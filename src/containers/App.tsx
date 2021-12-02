@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, StyleSheet, Text, useColorScheme} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import RNBootSplash from 'react-native-bootsplash';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+    init().finally(async () => {
+      await RNBootSplash.hide({fade: true});
+    });
+  }, []);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView>
       <Text>Login</Text>
     </SafeAreaView>
   );
