@@ -1,16 +1,10 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView, StyleSheet, Text, useColorScheme} from 'react-native';
-import RNBootSplash from 'react-native-bootsplash';
+import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {
   useEffect(() => {
-    const init = async () => {
-      // …do multiple sync or async tasks
-    };
-
-    init().finally(async () => {
-      await RNBootSplash.hide({fade: true});
-    });
+    SplashScreen.hide();
   }, []);
 
   return (
