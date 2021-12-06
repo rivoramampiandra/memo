@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import SignIn from './Auth/SignIn';
+import SignIn from './Auth/SignIn/SignIn';
 import SignUp from './Auth/SignUp/SignUp';
 
 const {Screen, Navigator} = createNativeStackNavigator();
