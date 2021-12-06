@@ -3,12 +3,15 @@ import React, {useState} from 'react';
 import {
   Image,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import Input from '../../../components/Input/Input';
+import Header from '../../../components/Layout/Header/Header';
 import {styles} from './SignIn.style';
 
 const SignIn = ({navigation}: any) => {
@@ -21,43 +24,43 @@ const SignIn = ({navigation}: any) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 1}}>
-        <Image
-          source={require('../../../assets/images/h-logo.png')}
-          style={styles.logo}
-          resizeMode={'center'}
-        />
-        <Text style={[styles.bold, styles.title]}>Login</Text>
-        <View>
-          <Text>E-mail</Text>
-          <TextInput style={styles.input} />
-        </View>
-        <View>
-          <Text>Mot de passe</Text>
-          <TextInput style={styles.input} />
-        </View>
-        <View style={[styles.horizontalFlex, styles.loginOption]}>
-          <View style={[styles.horizontalFlex]}>
-            <CheckBox
-              value={rememberMe}
-              onValueChange={() => handleRememberMe()}
-            />
-            <Text>Se souvenir de moi</Text>
+        <Header navigation={navigation} />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={[styles.bold, styles.title]}>Se connecter</Text>
+          <View>
+            <Text>E-mail</Text>
+            <Input />
           </View>
-          <TouchableOpacity>
-            <Text>Mot de passe oublié ?</Text>
+          <View>
+            <Text>Mot de passe</Text>
+            <Input />
+          </View>
+          <View style={[styles.horizontalFlex, styles.loginOption]}>
+            <View style={[styles.horizontalFlex]}>
+              <CheckBox
+                value={rememberMe}
+                onValueChange={() => handleRememberMe()}
+              />
+              <Text>Se souvenir de moi</Text>
+            </View>
+            <TouchableOpacity>
+              <Text>Mot de passe oublié ?</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            style={styles.button}>
+            <Text style={{...styles.btnText, ...styles.bold}}>
+              Se connecter
+            </Text>
           </TouchableOpacity>
-        </View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
-          style={styles.button}>
-          <Text style={{...styles.btnText, ...styles.bold}}>Se connecter</Text>
-        </TouchableOpacity>
-        <View style={[styles.horizontalFlex, styles.signUpOption]}>
-          <Text>Pas de compte ? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <Text style={styles.signup}>Inscrivez-vous</Text>
-          </TouchableOpacity>
-        </View>
+          <View style={[styles.horizontalFlex, styles.signUpOption]}>
+            <Text>Pas de compte ? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+              <Text style={styles.signup}>Inscrivez-vous</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
