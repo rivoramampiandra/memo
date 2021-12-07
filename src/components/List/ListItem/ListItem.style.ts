@@ -25,4 +25,8 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
+  icon: {
+    width: 24,
+    height: 24,
+  },
 });
