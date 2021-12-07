@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
     height: '10%',
     flexDirection: 'row',
     alignItems: 'center',
-    // justifyContent: 'space-between',
     justifyContent: 'center',
     marginBottom: 25,
   },
