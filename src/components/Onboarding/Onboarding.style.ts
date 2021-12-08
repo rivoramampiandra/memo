@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   image: {
     flex: 0.7,
     justifyContent: 'center',
-    width: '80%',
+    maxWidth: '90%',
   },
   dot: {
     height: 10,
@@ -18,13 +18,13 @@ export const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   description: {
-    fontSize: 14,
-    fontWeight: '500',
+    fontSize: 16,
+    fontWeight: '400',
     textAlign: 'center',
   },
   title: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: '500',
     textAlign: 'center',
   },
 });

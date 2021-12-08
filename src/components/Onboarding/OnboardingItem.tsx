@@ -6,7 +6,7 @@ const OnboardingItem = (props: any) => {
   const {item} = props;
   const {width} = useWindowDimensions();
   return (
-    <View style={[styles.container, {width}]}>
+    <View style={[styles.container, {width: width - 0.1 * width}]}>
       <Image
         source={item.image}
         style={[styles.image, {width, resizeMode: 'contain'}]}
