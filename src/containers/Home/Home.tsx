@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {firstLogin && done ? (
+      {!firstLogin && done ? (
         <ScrollView>
           <Text>Home</Text>
         </ScrollView>
