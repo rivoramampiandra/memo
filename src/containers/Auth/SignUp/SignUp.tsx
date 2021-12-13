@@ -1,11 +1,6 @@
+import {Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
 import Header from '../../../components/Layout/Header/Header';
 import {styles} from './SignUp.style';
 import Step1 from './Steps/Step1';
@@ -41,7 +36,7 @@ const SignUp = ({navigation}: any) => {
     <SafeAreaView style={styles.container}>
       <Header navigation={navigation} goBack />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
+        <View style={styles.titleContainer}>
           <Text style={[styles.bold, styles.title]}>S'inscrire</Text>
           <Text>{subTitle}</Text>
         </View>

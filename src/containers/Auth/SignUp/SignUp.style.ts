@@ -7,9 +7,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  titleContainer: {
+    marginBottom: 12,
+  },
   title: {
     fontSize: 16,
-    marginBottom: 12,
   },
   btnText: {
     color: '#fff',
