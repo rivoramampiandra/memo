@@ -1,5 +1,6 @@
+import {Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
-import {View, Text, SafeAreaView, ScrollView} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import Onboarding from '../../components/Onboarding/Onboarding';
 import {styles} from './Home.style';
 
