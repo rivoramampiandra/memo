@@ -1,6 +1,6 @@
-import {Icon} from '@ui-kitten/components';
+import {Icon, Text} from '@ui-kitten/components';
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {styles} from './ListItem.style';
 
 const ListItem = (props: any) => {
