@@ -1,3 +1,4 @@
+import {Icon} from '@ui-kitten/components';
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {styles} from './ListItem.style';
@@ -12,10 +13,10 @@ const ListItem = (props: any) => {
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={() => true}>
-          <Text>X</Text>
+          <Icon name="edit-outline" fill="#000" style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => true}>
-          <Text>X</Text>
+          <Icon name="close-outline" fill="#000" style={styles.icon} />
         </TouchableOpacity>
       </View>
     </View>

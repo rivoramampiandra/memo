@@ -1,5 +1,6 @@
+import {Icon} from '@ui-kitten/components';
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import ListItem from '../../../../components/List/ListItem/ListItem';
 import {styles} from '../SignUp.style';
 
@@ -8,7 +9,11 @@ const Step2Picture = (props: any) => {
     <View style={styles.docInfoContainer}>
       <View style={styles.imageContainer}>
         <TouchableOpacity style={styles.close}>
-          <Text>X</Text>
+          <Icon
+            name="close-circle-outline"
+            fill="#000"
+            style={styles.closeIcon}
+          />
         </TouchableOpacity>
         <Image
           source={require('../../../../assets/images/temp.png')}
