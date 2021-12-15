@@ -1,5 +1,6 @@
+import {Text} from '@ui-kitten/components';
 import React from 'react';
-import {View, Text, useWindowDimensions, Image} from 'react-native';
+import {View, useWindowDimensions, Image} from 'react-native';
 import {styles} from './Onboarding.style';
 
 const OnboardingItem = (props: any) => {

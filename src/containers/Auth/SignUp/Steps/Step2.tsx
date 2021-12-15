@@ -1,5 +1,6 @@
+import {Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {Divider} from '../../../../components/Divider';
 import Input from '../../../../components/Input/Input';
 import {styles} from '../SignUp.style';

@@ -5,12 +5,12 @@ import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import SignIn from './Auth/SignIn/SignIn';
 import SignUp from './Auth/SignUp/SignUp';
-import Conditions from './Conditions/Conditions';
-import Home from './Home/Home';
 import * as eva from '@eva-design/eva';
 import {default as defaultTheme} from '../theme/default-theme.json';
 import {default as mapping} from '../../mapping.json';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
+import HomeNavigation from '../navigation/HomeNavigation';
+import Home from './Home/Home';
 
 const {Screen, Navigator} = createNativeStackNavigator();
 
@@ -33,7 +33,6 @@ const App = () => {
             <Screen name="SignIn" component={SignIn} />
             <Screen name="SignUp" component={SignUp} />
             <Screen name="Home" component={Home} />
-            <Screen name="Conditions" component={Conditions} />
           </Navigator>
         </NavigationContainer>
       </ApplicationProvider>

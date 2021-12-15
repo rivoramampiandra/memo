@@ -1,15 +1,7 @@
 import CheckBox from '@react-native-community/checkbox';
+import {Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
-import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
 import Input from '../../../components/Input/Input';
 import Header from '../../../components/Layout/Header/Header';
 import {styles} from './SignIn.style';
