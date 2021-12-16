@@ -3,7 +3,7 @@ import React from 'react';
 import {View, Text, Image, useWindowDimensions} from 'react-native';
 import images from '../../constant/image';
 import {styles} from './sidemenu.style';
-const Sidemenu = () => {
+const Sidemenu = (props: any) => {
   const width = useWindowDimensions();
 
   return (
