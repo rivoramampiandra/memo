@@ -6,8 +6,7 @@ import * as eva from '@eva-design/eva';
 import {default as defaultTheme} from '../theme/default-theme.json';
 import {default as mapping} from '../../mapping.json';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
-import 'react-native-gesture-handler';
-import AuthNavigation from '../navigation/AuthNavigation';
+import HomeNavigation from '../navigation/HomeNavigation';
 
 const App = () => {
   useEffect(() => {
@@ -22,7 +21,7 @@ const App = () => {
         theme={{...eva.light, ...defaultTheme}}
         customMapping={mapping as any}>
         <NavigationContainer>
-          <AuthNavigation />
+          <HomeNavigation />
         </NavigationContainer>
       </ApplicationProvider>
     </>

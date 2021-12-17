@@ -5,13 +5,12 @@ import {SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import Onboarding from '../../components/Onboarding/Onboarding';
 import {styles} from './Home.style';
 
-const Home = ({navigation}: any) => {
+const Home = (props: any) => {
   const [firstLogin, setFirstLogin] = useState(false);
   const [done, setDone] = useState(false);
 
   const handleOpenDrawer = () => {
-    navigation.openDrawer();
-    // navigation.dispatch(DrawerActions.openDrawer());
+    props.navigation.dispatch(DrawerActions.openDrawer());
   };
 
   return (
