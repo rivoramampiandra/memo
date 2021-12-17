@@ -13,7 +13,7 @@ const AuthNavigation = () => {
       <Screen name="SignIn" component={SignIn} />
       <Screen name="SignUp" component={SignUp} />
       <Screen name="Home" component={Home} />
-      <Screen name="HomeNavigation" component={HomeNavigation} />
+      {/* <Screen name="HomeNavigation" component={HomeNavigation} /> */}
     </Navigator>
   );
 };
