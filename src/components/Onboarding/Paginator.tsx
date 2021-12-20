@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, useWindowDimensions, Animated} from 'react-native';
+import {View, useWindowDimensions, Animated} from 'react-native';
 import {styles} from './Onboarding.style';
 
 const Paginator = ({data, scrollX}: any) => {

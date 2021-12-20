@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const Conditions = () => {
+const HeaderNav = () => {
   return (
     <View>
-      <Text>Condition général d'utilisation</Text>
+      <Text></Text>
     </View>
   );
 };
 
-export default Conditions;
+export default HeaderNav;

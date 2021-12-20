@@ -1,11 +1,16 @@
 import CheckBox from '@react-native-community/checkbox';
-import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {Text} from '@ui-kitten/components';
+import React, {useState} from 'react';
+import {View, TouchableOpacity} from 'react-native';
 import Input from '../../../../components/Input/Input';
+import Conditions from '../../../../components/Modal/Content/Conditions';
+import Modal from '../../../../components/Modal/Modal';
 import {styles} from '../SignUp.style';
 
 const Step1 = ({navigation}: any) => {
   const handleAccept = () => {};
+  const [modalVisibility, setModalVisibility] = useState(false);
+
   return (
     <View>
       <View>
@@ -35,12 +40,17 @@ const Step1 = ({navigation}: any) => {
       <View style={[styles.horizontalFlex]}>
         <CheckBox value={true} onValueChange={() => handleAccept()} />
         <Text>Accepter les </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Conditions')}>
+        <TouchableOpacity onPress={() => setModalVisibility(true)}>
           <Text style={styles.conditionText}>
             conditions general d’utilisation{' '}
           </Text>
         </TouchableOpacity>
       </View>
+      <Modal
+        modalVisibility={modalVisibility}
+        closeModal={() => setModalVisibility(false)}
+        component={<Conditions />}
+      />
     </View>
   );
 };
