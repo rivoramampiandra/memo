@@ -1,10 +1,32 @@
+import {Text} from '@ui-kitten/components';
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import {styles} from './Summary.style';
+import SummaryIndex from './SummaryIndex';
 
-const Summary = () => {
+interface ISummary {
+  title: string;
+  unit?: string | undefined;
+  count: string;
+  type: string;
+  size: 'default' | 'large';
+}
+
+const Summary = (props: ISummary) => {
+  const {title, unit, count, type, size} = props;
   return (
-    <View>
-      <Text></Text>
+    <View style={[styles.container]}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{title}</Text>
+        <SummaryIndex
+          type={type}
+          style={size === 'large' ? styles.largeImage : styles.image}
+        />
+      </View>
+      <View style={styles.content}>
+        <Text style={styles.count}>{count}</Text>
+        <Text>{unit}</Text>
+      </View>
     </View>
   );
 };
