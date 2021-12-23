@@ -1,6 +1,12 @@
 import {Divider, Text} from '@ui-kitten/components';
 import React from 'react';
-import {View, Image, useWindowDimensions, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Image,
+  useWindowDimensions,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import images from '../../constant/image';
 import {styles} from './sidemenu.style';
 
@@ -9,7 +15,7 @@ const Sidemenu = (props: any) => {
 
   return (
     <View style={styles.container}>
-      <View>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <TouchableOpacity style={[styles.item, styles.activeItem]}>
           <Text style={styles.textItem}>Accueil</Text>
           <Divider style={styles.miniDivider} />
@@ -38,7 +44,7 @@ const Sidemenu = (props: any) => {
           <Text style={styles.textItem}>DECONNEXION</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
-      </View>
+      </ScrollView>
       <View style={styles.footer}>
         <Image source={images.LOGO} style={styles.logo} resizeMode="center" />
         <Text>Version 1.0</Text>

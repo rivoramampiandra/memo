@@ -44,5 +44,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 40,
+    paddingVertical: 16,
   },
 });
