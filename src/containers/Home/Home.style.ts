@@ -7,4 +7,25 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  homeItemContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 20,
+  },
+  homeItemContent: {
+    paddingHorizontal: 5,
+    flex: 1,
+  },
+  containerTitle: {
+    textAlign: 'center',
+    fontSize: 18,
+  },
+
+  /**dashboard style*/
+
+  /**dashboard style*/
+
+  /**annual summary style*/
+
+  /**annual summary style*/
 });
