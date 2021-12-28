@@ -1,14 +1,5 @@
-import {DrawerActions} from '@react-navigation/native';
-import {Text} from '@ui-kitten/components';
 import React, {useRef, useState} from 'react';
-import {
-  Animated,
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Animated, FlatList, SafeAreaView, View} from 'react-native';
 import HeaderNav from '../../components/Layout/Header/HeaderNav';
 import Onboarding from '../../components/Onboarding/Onboarding';
 import Paginator from '../../components/Onboarding/Paginator';
