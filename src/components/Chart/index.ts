@@ -1,1 +1,1 @@
-export {default as Sunbrust} from './Sunbrust';
+export {default as Sunburst} from './Sunburst';
