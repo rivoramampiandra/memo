@@ -1,5 +1,5 @@
 import {Text} from '@ui-kitten/components';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   Image,
@@ -11,12 +11,18 @@ import {styles} from '../Home.style';
 import {upcoming, toReplace} from '../../../constant/intervention-mock';
 import {InterventionItem} from '../../../components/Intervention';
 import image from '../../../constant/image';
-import {Sunbrust} from '../../../components/Chart';
+import {Sunburst} from '../../../components/Chart';
 
 const Dashboard = () => {
   const {width, height} = useWindowDimensions();
+  const [layout, setLayout] = useState<any>({});
+
+  const _onLayout = (e: any) => {
+    setLayout({layout: e.nativeEvent.layout});
+  };
+
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1}} onLayout={_onLayout}>
       <Text style={styles.containerTitle}>TABLEAU DE BORD</Text>
       {/* <View style={{alignItems: 'center', justifyContent: 'center'}}>
         <Image
@@ -25,23 +31,25 @@ const Dashboard = () => {
           resizeMode="contain"
         />
       </View> */}
-      <Sunbrust />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <Text>A remplacer</Text>
-          <FlatList
-            data={toReplace}
-            renderItem={({item}) => <InterventionItem item={item} />}
-          />
-        </View>
-        <View>
-          <Text>Intervention à venir</Text>
-          <FlatList
-            data={upcoming}
-            renderItem={({item}) => <InterventionItem item={item} />}
-          />
-        </View>
-      </ScrollView>
+      <View style={{flex: 1}}>{!!layout.layout && <Sunburst />}</View>
+      <View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View>
+            <Text>A remplacer</Text>
+            <FlatList
+              data={toReplace}
+              renderItem={({item}) => <InterventionItem item={item} />}
+            />
+          </View>
+          <View>
+            <Text>Intervention à venir</Text>
+            <FlatList
+              data={upcoming}
+              renderItem={({item}) => <InterventionItem item={item} />}
+            />
+          </View>
+        </ScrollView>
+      </View>
     </View>
   );
 };
