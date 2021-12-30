@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {Animated, FlatList, SafeAreaView, View} from 'react-native';
+import {Sunburst} from '../../components/Chart';
 import HeaderNav from '../../components/Layout/Header/HeaderNav';
 import Onboarding from '../../components/Onboarding/Onboarding';
 import Paginator from '../../components/Onboarding/Paginator';
@@ -43,8 +44,9 @@ const Home = (props: any) => {
   return (
     <SafeAreaView style={styles.container}>
       {!firstLogin && done ? (
-        <View>
+        <View style={{flex: 1}}>
           <HeaderNav />
+          {/* <Sunburst /> */}
           <View style={styles.homeItemContainer}>
             <FlatList
               data={data}
