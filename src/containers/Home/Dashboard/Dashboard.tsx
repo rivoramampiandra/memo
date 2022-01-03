@@ -24,14 +24,14 @@ const Dashboard = () => {
   return (
     <View style={{flex: 1}} onLayout={_onLayout}>
       <Text style={styles.containerTitle}>TABLEAU DE BORD</Text>
-      {/* <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{alignItems: 'center', justifyContent: 'center'}}>
         <Image
           source={image.TEMP_CHART}
           style={{width: width, height: height * 0.45}}
           resizeMode="contain"
         />
-      </View> */}
-      <View style={{flex: 1}}>{!!layout.layout && <Sunburst />}</View>
+      </View>
+      {/* <View style={{flex: 1}}>{!!layout.layout && <Sunburst />}</View> */}
       <View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
