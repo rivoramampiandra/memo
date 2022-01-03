@@ -5,6 +5,7 @@ import Sidemenu from '../components/Sidemenu/Sidemenu';
 import {NavigationContainer} from '@react-navigation/native';
 import SignIn from '../containers/Auth/SignIn/SignIn';
 import AuthNavigation from './AuthNavigation';
+import {Kilometrage} from '../containers/Kilometrage';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
@@ -22,6 +23,7 @@ const HomeNavigation = () => {
       drawerContent={props => <Sidemenu {...props} />}>
       <Screen name="AuthNavigation" component={AuthNavigation} />
       <Screen name="Home" component={Home} />
+      <Screen name="Kilometrage" component={Kilometrage} />
       <Screen name="SignIn" component={SignIn} />
     </Navigator>
   );
