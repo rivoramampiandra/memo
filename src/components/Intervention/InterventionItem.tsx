@@ -1,13 +1,13 @@
 import {Icon, Text} from '@ui-kitten/components';
 import React from 'react';
-import {View} from 'react-native';
+import {Image, View} from 'react-native';
 import {styles} from './InterventionItem.style';
 
 interface IIntervention {
   item: {
     title: string;
     subtitle: string;
-    image: string;
+    image: any;
     distance: string;
     type: string;
   };
@@ -15,7 +15,7 @@ interface IIntervention {
 }
 
 const InterventionItem = (props: IIntervention) => {
-  const {title, subtitle, image, type, distance} = props.item;
+  const {title, subtitle, image: imageURL, type, distance} = props.item;
 
   const getStatusColor = (type: string) => {
     const color: any = {
@@ -29,7 +29,19 @@ const InterventionItem = (props: IIntervention) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Icon name="shield-off-outline" fill="#000" style={styles.itemImage} />
+        {!imageURL ? (
+          <Icon
+            name="shield-off-outline"
+            fill="#000"
+            style={styles.itemImage}
+          />
+        ) : (
+          <Image
+            source={imageURL}
+            resizeMode="contain"
+            style={styles.itemImage}
+          />
+        )}
       </View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{title}</Text>
