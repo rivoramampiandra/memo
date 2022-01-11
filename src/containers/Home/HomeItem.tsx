@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, useWindowDimensions, View} from 'react-native';
+import {useWindowDimensions, View} from 'react-native';
 import {styles} from './Home.style';
 
 const HomeItem = (props: any) => {

@@ -11,7 +11,6 @@ import {styles} from '../Home.style';
 import {upcoming, toReplace} from '../../../constant/intervention-mock';
 import {InterventionItem} from '../../../components/Intervention';
 import image from '../../../constant/image';
-import {Sunburst} from '../../../components/Chart';
 
 const Dashboard = () => {
   const {width, height} = useWindowDimensions();
@@ -32,7 +31,7 @@ const Dashboard = () => {
         />
       </View>
       {/* <View style={{flex: 1}}>{!!layout.layout && <Sunburst />}</View> */}
-      <View>
+      <View style={{flex: 1}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
             <Text>A remplacer</Text>

@@ -44,9 +44,8 @@ const Home = (props: any) => {
   return (
     <SafeAreaView style={styles.container}>
       {!firstLogin && done ? (
-        <View style={{flex: 1}}>
+        <View style={{}}>
           <HeaderNav />
-          {/* <Sunburst /> */}
           <View style={styles.homeItemContainer}>
             <FlatList
               data={data}
