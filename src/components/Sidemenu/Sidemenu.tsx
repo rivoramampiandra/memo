@@ -1,18 +1,10 @@
-import {useNavigation} from '@react-navigation/native';
 import {Divider, Text} from '@ui-kitten/components';
 import React from 'react';
-import {
-  View,
-  Image,
-  useWindowDimensions,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Image, TouchableOpacity, ScrollView} from 'react-native';
 import images from '../../constant/image';
 import {styles} from './sidemenu.style';
 
 const Sidemenu = (props: any) => {
-  const width = useWindowDimensions();
   const {navigation} = props;
 
   const goto = (path: any) => {
@@ -33,11 +25,11 @@ const Sidemenu = (props: any) => {
           <Text style={styles.textItem}>Contrôlez le kilometrage</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity style={styles.item} onPress={() => goto('Vehicles')}>
           <Text style={styles.textItem}>Mes véhivules</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity style={styles.item} onPress={() => goto('Setting')}>
           <Text style={styles.textItem}>Paramètres</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
