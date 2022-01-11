@@ -27,7 +27,7 @@ const Step1 = ({navigation}: any) => {
       </View>
       <View>
         <Text>Mot de passe</Text>
-        <Input />
+        <Input secureTextEntry />
       </View>
       <View>
         <Text>Confirmation de mot de passe</Text>

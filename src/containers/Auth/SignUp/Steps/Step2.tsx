@@ -5,10 +5,18 @@ import {Divider} from '../../../../components/Divider';
 import Input from '../../../../components/Input/Input';
 import {styles} from '../SignUp.style';
 import Step2Picture from './Step2Picture';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const Step2 = (props: any) => {
   const [pictureMode, setPictureMode] = useState(false);
   const handleOpenCamera = () => {};
+
+  const takePicture = () => {
+    launchCamera({mediaType: 'photo'}, res => {
+      console.log(res);
+      setPictureMode(true);
+    });
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -33,7 +41,7 @@ const Step2 = (props: any) => {
           <Divider />
           <View>
             <TouchableOpacity
-              onPress={() => setPictureMode(true)}
+              onPress={takePicture}
               style={styles.outlinedButton}>
               <Text style={styles.btnTextOutlined}>
                 {' '}

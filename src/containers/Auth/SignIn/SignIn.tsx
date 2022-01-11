@@ -25,7 +25,7 @@ const SignIn = ({navigation}: any) => {
           </View>
           <View>
             <Text>Mot de passe</Text>
-            <Input />
+            <Input secureTextEntry />
           </View>
           <View style={[styles.horizontalFlex, styles.loginOption]}>
             <View style={[styles.horizontalFlex]}>
