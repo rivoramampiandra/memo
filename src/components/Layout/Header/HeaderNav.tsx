@@ -23,11 +23,12 @@ const HeaderNav = (props: any) => {
         />
       </TouchableOpacity>
       <Text style={styles.navTitle}>Ma peugeot 206</Text>
-      <TouchableOpacity>
-        <Icon
-          name="file-text-outline"
-          fill="#000"
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Intervention' as any)}>
+        <Image
+          source={image.ADD_FILE}
           style={{width: 32, height: 32}}
+          resizeMode="contain"
         />
       </TouchableOpacity>
     </View>
