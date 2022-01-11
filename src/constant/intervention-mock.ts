@@ -1,27 +1,29 @@
+import image from './image';
+
 export const upcoming = [
   {
-    image: '',
+    image: image.BATTERY,
     title: 'Batterie',
     subtitle: "Contrôle d'usure / remplacement",
     distance: 'dans 40 km',
     type: 'default',
   },
   {
-    image: '',
+    image: image.LIQUID_COOLER,
     title: 'Huile moteur',
     subtitle: 'Remplacement',
     distance: 'dans 40 km',
     type: 'default',
   },
   {
-    image: '',
+    image: image.EXHAUST,
     title: "Ligne d'échappement",
     subtitle: "Contrôle d'usure / remplacement",
     distance: 'dans 40 km',
     type: 'default',
   },
   {
-    image: '',
+    image: image.CHASSIS,
     title: 'Chassis',
     subtitle: "Contrôle d'usure",
     distance: 'dans 40 km',
@@ -31,29 +33,24 @@ export const upcoming = [
 
 export const toReplace = [
   {
-    image: '',
+    image: image.BRAKE_DISC,
     title: 'Disque de frein avant',
     subtitle: "Contrôle d'usure / remplacement",
     distance: 'dans 40 km',
     type: 'critical',
   },
   {
-    image: '',
+    image: image.LIQUID_COOLER,
     title: 'Liquide de refroidissement',
     subtitle: 'Remplacement',
     distance: 'dans 40 km',
     type: 'warning',
   },
   {
-    image: '',
+    image: image.AILE,
     title: 'Aile avant droite',
     subtitle: "Contrôle d'usure / remplacement",
     distance: 'dans 40 km',
     type: 'warning',
   },
 ];
-
-// export default {
-//   upcoming,
-//   toReplace,
-// };
