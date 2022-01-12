@@ -27,7 +27,7 @@ const Step1 = ({navigation}: any) => {
       </View>
       <View>
         <Text>Mot de passe</Text>
-        <Input />
+        <Input secureTextEntry />
       </View>
       <View>
         <Text>Confirmation de mot de passe</Text>
@@ -42,7 +42,7 @@ const Step1 = ({navigation}: any) => {
         <Text>Accepter les </Text>
         <TouchableOpacity onPress={() => setModalVisibility(true)}>
           <Text style={styles.conditionText}>
-            conditions general d’utilisation{' '}
+            conditions general d'utilisation{' '}
           </Text>
         </TouchableOpacity>
       </View>

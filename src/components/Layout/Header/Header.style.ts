@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 25,
+    zIndex: 99,
   },
   back: {
     position: 'relative',
@@ -17,5 +18,14 @@ export const styles = StyleSheet.create({
     height: '100%',
     alignSelf: 'center',
     alignContent: 'center',
+  },
+  navContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  navTitle: {
+    fontSize: 20,
+    fontWeight: '500',
   },
 });
