@@ -2,6 +2,7 @@ import {Icon} from '@ui-kitten/components';
 import {TouchableOpacity, View} from 'react-native';
 import VehicleItem from '../Vehicles/VehicleItem/VehicleItem';
 import {styles} from './Setting.style';
+import React from 'react';
 
 const ItemWithDelete = (props: any) => {
   const {item} = props;
