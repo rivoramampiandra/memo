@@ -1,6 +1,7 @@
+import {useNavigation} from '@react-navigation/native';
 import {Icon, Text} from '@ui-kitten/components';
 import React from 'react';
-import {Image, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import {styles} from './InterventionItem.style';
 
 interface IIntervention {
@@ -14,9 +15,10 @@ interface IIntervention {
   rest?: any;
 }
 
-const InterventionItem = (props: IIntervention) => {
+const InterventionItem = (props: any) => {
   const {title, subtitle, image: imageURL, type, distance} = props.item;
-
+  // const {navigation} = props;
+  const navigation = useNavigation();
   const getStatusColor = (type: string) => {
     const color: any = {
       default: 'primary',
@@ -52,13 +54,15 @@ const InterventionItem = (props: IIntervention) => {
           {distance}
         </Text>
       </View>
-      <View style={styles.iconContainer}>
+      <TouchableOpacity
+        style={styles.iconContainer}
+        onPress={() => navigation.navigate('History' as any)}>
         <Icon
           name="chevron-right-outline"
           fill="#000"
           style={styles.iconChevron}
         />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
