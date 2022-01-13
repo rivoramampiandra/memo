@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 15,
-    marginVertical: 8,
+    marginVertical: 4,
     justifyContent: 'space-between',
   },
   defaultIcon: {width: 32, height: 32},
