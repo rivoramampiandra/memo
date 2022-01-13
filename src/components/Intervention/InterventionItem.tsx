@@ -16,7 +16,7 @@ interface IIntervention {
 }
 
 const InterventionItem = (props: any) => {
-  const {title, subtitle, image: imageURL, type, distance} = props.item;
+  const {title, subtitle, image: imageURL, type, distance, status} = props.item;
   // const {navigation} = props;
   const navigation = useNavigation();
   const getStatusColor = (type: string) => {
@@ -56,7 +56,10 @@ const InterventionItem = (props: any) => {
       </View>
       <TouchableOpacity
         style={styles.iconContainer}
-        onPress={() => navigation.navigate('History' as any)}>
+        onPress={() =>
+          //@ts-ignore: next-line
+          navigation.navigate('History' as string, {status: status})
+        }>
         <Icon
           name="chevron-right-outline"
           fill="#000"
