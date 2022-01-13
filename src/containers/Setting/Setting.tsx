@@ -46,7 +46,9 @@ const Setting = () => {
   return (
     <Wrapper>
       <HeaderNav />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled={true}>
         <View style={{marginVertical: 16}}>
           <Text style={{fontSize: 20}}>Mes informations</Text>
         </View>
@@ -76,6 +78,7 @@ const Setting = () => {
           <Text style={{fontSize: 20}}>Mes véhicules</Text>
           <View style={{flex: 1}}>
             <FlatList
+              nestedScrollEnabled={true}
               data={vehicles}
               scrollEnabled={false}
               renderItem={({item}) => <ItemWithDelete item={item} />}
