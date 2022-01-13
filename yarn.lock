@@ -5650,6 +5650,11 @@ react-native-image-picker@^4.7.0:
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-4.7.0.tgz#ec9c72f90dce5bdfea4d22f6f1274bb3748101de"
   integrity sha512-JOXkMmzRnjMvmnzeWSeVeEZFWo0xx7LRl1wP57V/GPpUkeHiShAP0qWzg/sTLSSK9CQU4PW74PeoPiYE85lX7Q==
 
+react-native-linear-gradient@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
+  integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
+
 react-native-pdf@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/react-native-pdf/-/react-native-pdf-6.4.0.tgz#e3aa583e3a2ccce0838dcc0ac5a29987774eea4f"
@@ -5700,6 +5705,11 @@ react-native-svg@^12.1.1:
   dependencies:
     css-select "^2.1.0"
     css-tree "^1.0.0-alpha.39"
+
+react-native-timeline-flatlist@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/react-native-timeline-flatlist/-/react-native-timeline-flatlist-0.7.6.tgz#85cfbe4c2956bfde9777766b8cc1eaf7fa7857d7"
+  integrity sha512-CrexymQd9ZN3ZDbpJdjslN2sKoJQNYp1zsqZhjCbDtzpCOurIKgjBcgxKahRX5VMq7MBkzEOmVCwcu0GueuCFw==
 
 react-native@0.66.4:
   version "0.66.4"
