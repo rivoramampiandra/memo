@@ -1406,15 +1406,7 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-native-charts-wrapper@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@types/react-native-charts-wrapper/-/react-native-charts-wrapper-0.5.2.tgz#212d3f8829c464deaedec0fb0ff5cf0751cf395e"
-  integrity sha512-ct8pmkh13s980Yj/cuxFdMJH3pi28/G5a+4DcZoPhIuHsmPadVOCDsfCh0E9PPFDfaZAK7sbK8zfjHCXNBygeQ==
-  dependencies:
-    "@types/react" "*"
-    "@types/react-native" "*"
-
-"@types/react-native@*", "@types/react-native@^0.66.4":
+"@types/react-native@^0.66.4":
   version "0.66.11"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.66.11.tgz#3d138275fe9cca3b8efad990b1bee08078c3ff4d"
   integrity sha512-DFuNMhRuyKMbJrI/s3rIuM5io+tIOK4Iq9oMzatWX5bIgfjZM86X1aA/epE0ipw1aFaoHKermK3fLG1bqFzzDQ==
@@ -5539,7 +5531,7 @@ prompts@^2.0.1, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -5611,14 +5603,6 @@ react-native-blob-util@^0.13.18:
   dependencies:
     base-64 "0.1.0"
     glob "^7.1.6"
-
-react-native-charts-wrapper@^0.5.7:
-  version "0.5.7"
-  resolved "https://registry.yarnpkg.com/react-native-charts-wrapper/-/react-native-charts-wrapper-0.5.7.tgz#13cdb387ede67f4292b92c8b03a8f15de3a7a2f7"
-  integrity sha512-d1lOSN47YRUqFGOht4uBP+P7N7OvtRrhgwTOdTNlXC+ZmoveBIIE+bl65uwGkS08kUUBudRBugsCRkf5MB/p2w==
-  dependencies:
-    prop-types "^15.5.10"
-    react "16.8.3"
 
 react-native-codegen@^0.0.7:
   version "0.0.7"
@@ -5770,16 +5754,6 @@ react-test-renderer@17.0.2:
     react-is "^17.0.2"
     react-shallow-renderer "^16.13.1"
     scheduler "^0.20.2"
-
-react@16.8.3:
-  version "16.8.3"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.8.3.tgz#c6f988a2ce895375de216edcfaedd6b9a76451d9"
-  integrity sha512-3UoSIsEq8yTJuSu0luO1QQWYbgGEILm+eJl2QN/VLDi7hL+EN18M3q3oVZwmVzzBJ3DkM7RMdRwBmZZ+b4IzSA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.13.3"
 
 react@17.0.2:
   version "17.0.2"
@@ -6066,14 +6040,6 @@ saxes@^5.0.1:
   integrity sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
   dependencies:
     xmlchars "^2.2.0"
-
-scheduler@^0.13.3:
-  version "0.13.6"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.6.tgz#466a4ec332467b31a91b9bf74e5347072e4cd889"
-  integrity sha512-IWnObHt413ucAYKsD9J1QShUKkbKLQQHdxRyw73sw4FN26iWr3DY/H34xGPe4nmL1DwXyWmSWmMrA9TfQbE/XQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 scheduler@^0.20.2:
   version "0.20.2"
