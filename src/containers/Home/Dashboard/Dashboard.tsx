@@ -1,36 +1,25 @@
 import {Text} from '@ui-kitten/components';
-import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  Image,
-  ScrollView,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import React from 'react';
+import {FlatList, ScrollView, useWindowDimensions, View} from 'react-native';
 import {styles} from '../Home.style';
 import {upcoming, toReplace} from '../../../constant/intervention-mock';
 import {InterventionItem} from '../../../components/Intervention';
-import image from '../../../constant/image';
+import {PieChart} from 'react-native-svg-charts';
+import Svg from 'react-native-svg';
+import {Sunburst} from '../../../components/Chart';
 
 const Dashboard = () => {
-  const {width, height} = useWindowDimensions();
-  const [layout, setLayout] = useState<any>({});
-
-  const _onLayout = (e: any) => {
-    setLayout({layout: e.nativeEvent.layout});
-  };
-
   return (
-    <View style={{flex: 1}} onLayout={_onLayout}>
+    <View style={{flex: 1}}>
       <Text style={styles.containerTitle}>TABLEAU DE BORD</Text>
-      <View style={{alignItems: 'center', justifyContent: 'center'}}>
-        <Image
-          source={image.TEMP_CHART}
-          style={{width: width, height: height * 0.45}}
-          resizeMode="contain"
-        />
+      <View
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+        }}>
+        <Sunburst />
       </View>
-      {/* <View style={{flex: 1}}>{!!layout.layout && <Sunburst />}</View> */}
       <View style={{flex: 1}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
