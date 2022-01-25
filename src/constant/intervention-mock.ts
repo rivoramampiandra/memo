@@ -33,7 +33,7 @@ export const upcoming = [
 
 export const toReplace = [
   {
-    image: image.BRAKE_DISC,
+    image: image.BRAKE,
     title: 'Disque de frein avant',
     subtitle: "Contrôle d'usure / remplacement",
     distance: 'dans 40 km',
