@@ -1,14 +1,14 @@
 import {Text} from '@ui-kitten/components';
 import React from 'react';
 import {useWindowDimensions, View} from 'react-native';
-import Svg, {PathProps} from 'react-native-svg';
+import Svg from 'react-native-svg';
 import {PieChart, PieChartData} from 'react-native-svg-charts';
 
 const COLOR = {
-  primary: 'rgb(96, 189, 172)',
-  warning: 'rgb(237, 140, 51)',
-  error: 'rgb(253, 87, 87)',
-  default: 'rgb(242, 242, 242)',
+  primary: '96, 189, 172',
+  warning: '237, 140, 51',
+  error: '253, 87, 87',
+  default: '242, 242, 242',
 };
 
 const chartData = {
@@ -20,6 +20,7 @@ const chartData = {
 
 const getPieChartData = (data: number[]): PieChartData[] => {
   return data.map((item, index) => {
+    let transparency = 1;
     let color = COLOR.default;
     // if (item >= 0 && item <= 25) {
     //   color = COLOR.primary;
@@ -31,14 +32,17 @@ const getPieChartData = (data: number[]): PieChartData[] => {
     //   color = COLOR.default;
     // }
 
+    // let transparency = (index + 1) / 10  | 1;
     if (index === 0) color = COLOR.warning;
-    else if (index === 2) color = COLOR.error;
-    else color = COLOR.primary;
+    else if (index === 2) {
+      color = COLOR.default;
+      transparency = 0;
+    } else color = COLOR.primary;
 
     return {
       key: index,
       value: item,
-      svg: {fill: color},
+      svg: {fill: `rgba(${color}, ${transparency})`},
     };
   });
 };
@@ -52,21 +56,12 @@ const getPieChartBg = (data: number[]): PieChartData[] => {
 
     let color = colorPalette.default;
 
-    color =
-      index === 0
-        ? COLOR.default
-        : index === 1
-        ? COLOR.warning
-        : index === 2
-        ? COLOR.default
-        : index === 3
-        ? COLOR.error
-        : COLOR.default;
+    color = index === 2 ? colorPalette.error : colorPalette.default;
 
     return {
       key: index,
       value: item,
-      svg: {fill: `rgba(${colorPalette.default}, 0.3)`},
+      svg: {fill: `rgba(${color}, 0.3)`},
     };
   });
 };
