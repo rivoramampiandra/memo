@@ -1,94 +1,251 @@
-import React, {useEffect, useState} from 'react';
-import {View, processColor, LayoutChangeEvent} from 'react-native';
-import {styles} from './Sunburst.style';
-import {LineChart, PieChart} from 'react-native-charts-wrapper';
+import {Text} from '@ui-kitten/components';
+import React from 'react';
+import {useWindowDimensions, View} from 'react-native';
+import Svg, {PathProps} from 'react-native-svg';
+import {PieChart, PieChartData} from 'react-native-svg-charts';
+
+const COLOR = {
+  primary: 'rgb(96, 189, 172)',
+  warning: 'rgb(237, 140, 51)',
+  error: 'rgb(253, 87, 87)',
+  default: 'rgb(242, 242, 242)',
+};
+
+const chartData = {
+  engine: 40,
+  brake: 20,
+  tires: 100,
+  bodywork: 48,
+};
+
+const getPieChartData = (data: number[]): PieChartData[] => {
+  return data.map((item, index) => {
+    let color = COLOR.default;
+    // if (item >= 0 && item <= 25) {
+    //   color = COLOR.primary;
+    // } else if (item >= 26 && item <= 75) {
+    //   color = COLOR.warning;
+    // } else if (item >= 76 && item <= 100) {
+    //   color = COLOR.error;
+    // } else {
+    //   color = COLOR.default;
+    // }
+
+    if (index === 0) color = COLOR.warning;
+    else if (index === 2) color = COLOR.error;
+    else color = COLOR.primary;
+
+    return {
+      key: index,
+      value: item,
+      svg: {fill: color},
+    };
+  });
+};
+
+const getPieChartBg = (data: number[]): PieChartData[] => {
+  return data.map((item, index) => {
+    const colorPalette = {
+      default: '242, 242, 242',
+      error: '233, 106, 103',
+    };
+
+    let color = colorPalette.default;
+
+    color =
+      index === 0
+        ? COLOR.default
+        : index === 1
+        ? COLOR.warning
+        : index === 2
+        ? COLOR.default
+        : index === 3
+        ? COLOR.error
+        : COLOR.default;
+
+    return {
+      key: index,
+      value: item,
+      svg: {fill: `rgba(${colorPalette.default}, 0.3)`},
+    };
+  });
+};
+
+const data1 = getPieChartData([25, 25, 25, 25]);
+const data2 = getPieChartData([25, 25, 25, 25]);
+const data3 = getPieChartData([25, 25, 25, 25]);
+const data4 = getPieChartData([25, 25, 25, 25]);
+const data5 = getPieChartData([25, 25, 25, 25]);
+const data6 = getPieChartData([25, 25, 25, 25]);
+const data7 = getPieChartData([25, 25, 25, 25]);
+const data8 = getPieChartData([25, 25, 25, 25]);
+const data9 = getPieChartData([25, 25, 25, 25]);
+const data10 = getPieChartData([25, 25, 25, 25]);
+
+const backgroundData = getPieChartBg([125, 125, 125, 125]);
 
 const Sunbrust = (props: any) => {
-  const [state, setState] = useState<any>({
-    legend: {
-      // enabled: true,
-      textSize: 15,
-      form: 'CIRCLE',
-      // horizontalAlignment: 'CENTER',
-      // verticalAlignment: 'CENTER',
-      // orientation: 'HORIZONTAL',
-      wordWrapEnabled: true,
-    },
-    data: {
-      dataSets: [
-        {
-          values: [
-            {value: 25, label: 'Moteur'},
-            {value: 25, label: 'Pneu'},
-            {value: 25, label: 'Carosserie'},
-            {value: 25, label: 'Freins'},
-          ],
-          label: '',
-          config: {
-            colors: [
-              processColor('#60BDAC'),
-              processColor('#60BDAC'),
-              processColor('#60BDAC'),
-              processColor('#ED8C33'),
-            ],
-            valueTextSize: 20,
-            valueTextColor: processColor('#fff'),
-            sliceSpace: 5,
-            // selectionShift: 13,
-            // xValuePosition: "OUTSIDE_SLICE",
-            // yValuePosition: "OUTSIDE_SLICE",
-            valueFormatter: "#.#'%'",
-            valueLineColor: processColor('#fff'),
-            valueLinePart1Length: 0.5,
-          },
-        },
-      ],
-    },
-    highlights: [],
-    description: {
-      text: '',
-    },
-  });
-
-  const handleSelect = (event: any) => {
-    let entry = event.nativeEvent;
-    if (entry == null) {
-      setState({...state, selectedEntry: null});
-    } else {
-      setState({...state, selectedEntry: JSON.stringify(entry)});
-    }
-
-    console.log(event.nativeEvent);
-  };
+  const {width, height} = useWindowDimensions();
 
   return (
-    <View style={{flex: 1}}>
+    <>
+      <View style={{position: 'absolute'}}>
+        <Text style={{fontSize: 28, fontWeight: '700'}}>164 000</Text>
+        <Text style={{textAlign: 'center', fontSize: 22}}>km</Text>
+      </View>
+      <Text
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 45,
+          transform: [{rotate: '-45deg'}],
+          fontSize: 18,
+        }}>
+        Moteur
+      </Text>
+      <Text
+        style={{
+          position: 'absolute',
+          right: 0,
+          top: 45,
+          transform: [{rotate: '45deg'}],
+          fontSize: 18,
+        }}>
+        Pneus
+      </Text>
+      <Text
+        style={{
+          position: 'absolute',
+          right: 0,
+          bottom: 35,
+          transform: [{rotate: '-45deg'}],
+          fontSize: 18,
+        }}>
+        Carosserie
+      </Text>
+      <Text
+        style={{
+          position: 'absolute',
+          left: 0,
+          bottom: 45,
+          transform: [{rotate: '45deg'}],
+          fontSize: 18,
+        }}>
+        Freins
+      </Text>
       <PieChart
-        style={styles.chart}
-        // logEnabled={true}
-        chartDescription={state.description}
-        data={state.data}
-        legend={state.legend}
-        // highlights={state.highlights}
-        entryLabelColor={processColor('#fff')}
-        entryLabelTextSize={20}
-        // entryLabelFontFamily={'Montserat'}
-        drawEntryLabels={true}
-        rotationEnabled={false}
-        rotationAngle={0}
-        // usePercentValues={true}
-        styledCenterText={{
-          text: `160 624 \n km`,
-          color: processColor('#000'),
-          size: 30,
+        style={{
+          width: width,
+          height: height * 0.45,
+          position: 'absolute',
         }}
-        centerTextRadiusPercent={0}
-        holeRadius={35}
-        holeColor={processColor('#f0f0f0')}
-        transparentCircleRadius={40}
-        maxAngle={360}
+        innerRadius={80}
+        outerRadius={175}
+        data={backgroundData}
       />
-    </View>
+      <PieChart
+        style={{width: width, height: height * 0.45, zIndex: 3}}
+        innerRadius={170}
+        outerRadius={175}
+        data={data1}>
+        <Svg>
+          <PieChart
+            style={{width: width, height: height * 0.45, zIndex: 3}}
+            innerRadius={160}
+            outerRadius={165}
+            data={data2}>
+            <Svg>
+              <PieChart
+                style={{width: width, height: height * 0.45, zIndex: 3}}
+                innerRadius={150}
+                outerRadius={155}
+                data={data3}>
+                <Svg>
+                  <PieChart
+                    style={{width: width, height: height * 0.45, zIndex: 3}}
+                    innerRadius={140}
+                    outerRadius={145}
+                    data={data4}>
+                    <Svg>
+                      <PieChart
+                        style={{
+                          width: width,
+                          height: height * 0.45,
+                          zIndex: 3,
+                        }}
+                        innerRadius={130}
+                        outerRadius={135}
+                        data={data5}>
+                        <Svg>
+                          <PieChart
+                            style={{
+                              width: width,
+                              height: height * 0.45,
+                              zIndex: 3,
+                            }}
+                            innerRadius={120}
+                            outerRadius={125}
+                            data={data6}>
+                            <Svg>
+                              <PieChart
+                                style={{
+                                  width: width,
+                                  height: height * 0.45,
+                                  zIndex: 3,
+                                }}
+                                innerRadius={110}
+                                outerRadius={115}
+                                data={data7}>
+                                <Svg>
+                                  <PieChart
+                                    style={{
+                                      width: width,
+                                      height: height * 0.45,
+                                      zIndex: 3,
+                                    }}
+                                    innerRadius={100}
+                                    outerRadius={105}
+                                    data={data8}>
+                                    <Svg>
+                                      <PieChart
+                                        style={{
+                                          width: width,
+                                          height: height * 0.45,
+                                          zIndex: 3,
+                                        }}
+                                        innerRadius={90}
+                                        outerRadius={95}
+                                        data={data9}>
+                                        <Svg>
+                                          <PieChart
+                                            style={{
+                                              width: width,
+                                              height: height * 0.45,
+                                              zIndex: 3,
+                                            }}
+                                            innerRadius={80}
+                                            outerRadius={85}
+                                            data={data10}
+                                          />
+                                        </Svg>
+                                      </PieChart>
+                                    </Svg>
+                                  </PieChart>
+                                </Svg>
+                              </PieChart>
+                            </Svg>
+                          </PieChart>
+                        </Svg>
+                      </PieChart>
+                    </Svg>
+                  </PieChart>
+                </Svg>
+              </PieChart>
+            </Svg>
+          </PieChart>
+        </Svg>
+      </PieChart>
+    </>
   );
 };
 
