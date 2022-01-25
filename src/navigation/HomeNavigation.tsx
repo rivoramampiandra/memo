@@ -12,6 +12,7 @@ import SignUp from '../containers/Auth/SignUp/SignUp';
 import {History} from '../containers/History';
 import {PDFViewer} from '../containers/PDFViewer';
 import {Promotions} from '../containers/Promotion';
+import AddCar from '../containers/Vehicles/AddCar/AddCar';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
@@ -38,6 +39,7 @@ const HomeNavigation = () => {
       <Screen name="PDFViewer" component={PDFViewer} />
       <Screen name="History" component={History} />
       <Screen name="Promotions" component={Promotions} />
+      <Screen name="AddCar" component={AddCar} />
     </Navigator>
   );
 };
