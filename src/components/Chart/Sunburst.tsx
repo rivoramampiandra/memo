@@ -18,25 +18,26 @@ const chartData = {
   bodywork: 48,
 };
 
+let TEMP_DATA = 4;
+let TEMP_DATA_WARNING = 6;
+
 const getPieChartData = (data: number[]): PieChartData[] => {
   return data.map((item, index) => {
     let transparency = 1;
     let color = COLOR.default;
-    // if (item >= 0 && item <= 25) {
-    //   color = COLOR.primary;
-    // } else if (item >= 26 && item <= 75) {
-    //   color = COLOR.warning;
-    // } else if (item >= 76 && item <= 100) {
-    //   color = COLOR.error;
-    // } else {
-    //   color = COLOR.default;
-    // }
 
     // let transparency = (index + 1) / 10  | 1;
-    if (index === 0) color = COLOR.warning;
-    else if (index === 2) {
-      color = COLOR.default;
-      transparency = 0;
+    if (index === 0) {
+      color = COLOR.warning;
+      TEMP_DATA_WARNING--;
+      transparency =
+        TEMP_DATA_WARNING > 0 && TEMP_DATA_WARNING < 6
+          ? TEMP_DATA_WARNING / 3
+          : 0;
+    } else if (index === 2) {
+      color = COLOR.error;
+      TEMP_DATA = TEMP_DATA - 1;
+      transparency = TEMP_DATA > 0 && TEMP_DATA < 4 ? TEMP_DATA / 3 : 0;
     } else color = COLOR.primary;
 
     return {
@@ -66,16 +67,16 @@ const getPieChartBg = (data: number[]): PieChartData[] => {
   });
 };
 
-const data1 = getPieChartData([25, 25, 25, 25]);
-const data2 = getPieChartData([25, 25, 25, 25]);
-const data3 = getPieChartData([25, 25, 25, 25]);
-const data4 = getPieChartData([25, 25, 25, 25]);
-const data5 = getPieChartData([25, 25, 25, 25]);
-const data6 = getPieChartData([25, 25, 25, 25]);
-const data7 = getPieChartData([25, 25, 25, 25]);
-const data8 = getPieChartData([25, 25, 25, 25]);
-const data9 = getPieChartData([25, 25, 25, 25]);
 const data10 = getPieChartData([25, 25, 25, 25]);
+const data9 = getPieChartData([25, 25, 25, 25]);
+const data8 = getPieChartData([25, 25, 25, 25]);
+const data7 = getPieChartData([25, 25, 25, 25]);
+const data6 = getPieChartData([25, 25, 25, 25]);
+const data5 = getPieChartData([25, 25, 25, 25]);
+const data4 = getPieChartData([25, 25, 25, 25]);
+const data3 = getPieChartData([25, 25, 25, 25]);
+const data2 = getPieChartData([25, 25, 25, 25]);
+const data1 = getPieChartData([25, 25, 25, 25]);
 
 const backgroundData = getPieChartBg([125, 125, 125, 125]);
 
