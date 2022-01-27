@@ -6,7 +6,7 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import image from '../../../constant/image';
 import {styles} from './Header.style';
 
-const HeaderNav = (props: any) => {
+const HeaderNav = () => {
   const isDrawerOpen = useDrawerStatus() === 'open';
   const navigation = useNavigation();
 

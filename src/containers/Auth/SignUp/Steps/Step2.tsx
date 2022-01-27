@@ -13,7 +13,6 @@ const Step2 = (props: any) => {
 
   const takePicture = () => {
     launchCamera({mediaType: 'photo'}, res => {
-      console.log(res);
       setPictureMode(true);
     });
   };

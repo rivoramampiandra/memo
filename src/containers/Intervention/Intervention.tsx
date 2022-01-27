@@ -48,7 +48,9 @@ const Intervention = (props: any) => {
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Ajout intervention</Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled={true}>
         <View>
           <TouchableOpacity onPress={takePicture} style={styles.outlinedButton}>
             <Text style={styles.btnTextOutlined}>

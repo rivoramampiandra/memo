@@ -1,11 +1,13 @@
 import {Button, Icon, Text} from '@ui-kitten/components';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {RefObject, useEffect, useRef, useState} from 'react';
 import {View, TouchableOpacity, useWindowDimensions} from 'react-native';
 import Wrapper from '../../components/Layout/Wrapper';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 //@ts-ignore:next-line
 import Picker from 'react-native-roll-picker';
 import {styles} from './Kilometrage.style';
+
+type PickerRefType = HTMLElement | null | undefined;
 
 const Kilometrage = (props: any) => {
   const {navigation} = props;
@@ -20,12 +22,12 @@ const Kilometrage = (props: any) => {
     rowIndex5: '0',
   };
   const [range, setRange] = useState(defaultRange);
-  const _Picker0: any = useRef();
-  const _Picker1: any = useRef();
-  const _Picker2: any = useRef();
-  const _Picker3: any = useRef();
-  const _Picker4: any = useRef();
-  const _Picker5: any = useRef();
+  const _Picker0: RefObject<PickerRefType> = useRef();
+  const _Picker1: RefObject<PickerRefType> = useRef();
+  const _Picker2: RefObject<PickerRefType> = useRef();
+  const _Picker3: RefObject<PickerRefType> = useRef();
+  const _Picker4: RefObject<PickerRefType> = useRef();
+  const _Picker5: RefObject<PickerRefType> = useRef();
 
   const takePicture = () => {
     launchCamera({mediaType: 'photo'}, res => {

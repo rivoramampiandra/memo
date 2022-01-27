@@ -1,21 +1,27 @@
 import {Divider, Text} from '@ui-kitten/components';
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Image, TouchableOpacity, ScrollView} from 'react-native';
 import images from '../../constant/image';
+import Conditions from '../Modal/Content/Conditions';
+import Modal from '../Modal/Modal';
 import {styles} from './sidemenu.style';
 
 const Sidemenu = (props: any) => {
   const {navigation} = props;
 
-  const goto = (path: any) => {
+  const goto = (path: string) => {
     if (!path) return;
     navigation.navigate(path);
   };
 
+  const [modalVisibility, setModalVisibility] = useState(false);
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <TouchableOpacity style={[styles.item, styles.activeItem]}>
+        <TouchableOpacity
+          style={[styles.item, styles.activeItem]}
+          onPress={() => goto('Home')}>
           <Text style={styles.textItem}>Accueil</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
@@ -37,7 +43,9 @@ const Sidemenu = (props: any) => {
           <Text style={styles.textItem}>Nous contacter</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity
+          style={styles.item}
+          onPress={() => setModalVisibility(true)}>
           <Text style={styles.textItem}>CGU ET CGV</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
@@ -50,6 +58,12 @@ const Sidemenu = (props: any) => {
         <Image source={images.LOGO} style={styles.logo} resizeMode="center" />
         <Text>Version 1.0</Text>
       </View>
+
+      <Modal
+        modalVisibility={modalVisibility}
+        closeModal={() => setModalVisibility(false)}
+        component={<Conditions />}
+      />
     </View>
   );
 };
