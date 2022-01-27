@@ -9,7 +9,7 @@ import {styles} from './sidemenu.style';
 const Sidemenu = (props: any) => {
   const {navigation} = props;
 
-  const goto = (path: any) => {
+  const goto = (path: string) => {
     if (!path) return;
     navigation.navigate(path);
   };

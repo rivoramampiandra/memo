@@ -17,10 +17,9 @@ interface IIntervention {
 
 const InterventionItem = (props: any) => {
   const {title, subtitle, image: imageURL, type, distance, status} = props.item;
-  // const {navigation} = props;
   const navigation = useNavigation();
   const getStatusColor = (type: string) => {
-    const color: any = {
+    const color: Record<string, string> = {
       default: 'primary',
       warning: 'warning',
       critical: 'danger',
