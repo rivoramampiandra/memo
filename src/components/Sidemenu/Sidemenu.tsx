@@ -2,6 +2,7 @@ import {Divider, Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
 import {View, Image, TouchableOpacity, ScrollView} from 'react-native';
 import images from '../../constant/image';
+import {AuthService} from '../../services/auth.service';
 import Conditions from '../Modal/Content/Conditions';
 import Modal from '../Modal/Modal';
 import {styles} from './sidemenu.style';
@@ -15,6 +16,11 @@ const Sidemenu = (props: any) => {
   };
 
   const [modalVisibility, setModalVisibility] = useState(false);
+
+  const logout = async () => {
+    await AuthService.logout();
+    goto('SignIn');
+  };
 
   return (
     <View style={styles.container}>
@@ -49,7 +55,7 @@ const Sidemenu = (props: any) => {
           <Text style={styles.textItem}>CGU ET CGV</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={() => goto('SignIn')}>
+        <TouchableOpacity style={styles.item} onPress={logout}>
           <Text style={styles.textItem}>DECONNEXION</Text>
           <Divider style={styles.miniDivider} />
         </TouchableOpacity>
