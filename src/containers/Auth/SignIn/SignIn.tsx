@@ -1,9 +1,11 @@
 import CheckBox from '@react-native-community/checkbox';
 import {Text} from '@ui-kitten/components';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useForm, Controller} from 'react-hook-form';
 import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
 import Input from '../../../components/Input/Input';
 import Header from '../../../components/Layout/Header/Header';
+import {AsyncStorageUtils} from '../../../utils/asyncStorageUtils';
 import {styles} from './SignIn.style';
 
 const SignIn = ({navigation}: any) => {
@@ -13,20 +15,65 @@ const SignIn = ({navigation}: any) => {
     setRememberMe(!rememberMe);
   };
 
+  useEffect(() => {
+    AsyncStorageUtils.checkFirstConnection();
+  }, []);
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    // navigation.navigate('Home');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex: 1}}>
         <Header navigation={navigation} />
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={[styles.bold, styles.title]}>Se connecter</Text>
-          <View>
-            <Text>E-mail</Text>
-            <Input />
-          </View>
-          <View>
-            <Text>Mot de passe</Text>
-            <Input secureTextEntry />
-          </View>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <>
+                <Text>E-mail</Text>
+                <Input onBlur={onBlur} onChangeText={onChange} value={value} />
+              </>
+            )}
+            name="email"
+          />
+          {errors.email && <Text>This is required.</Text>}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <>
+                <Text>Mot de passe</Text>
+                <Input
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  secureTextEntry
+                />
+              </>
+            )}
+            name="password"
+          />
+          {errors.password && <Text>This is required.</Text>}
           <View style={[styles.horizontalFlex, styles.loginOption]}>
             <View style={[styles.horizontalFlex]}>
               <CheckBox
@@ -40,7 +87,7 @@ const SignIn = ({navigation}: any) => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => handleSubmit(onSubmit)}
             style={styles.button}>
             <Text style={{...styles.btnText, ...styles.bold}}>
               Se connecter
