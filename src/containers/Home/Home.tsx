@@ -1,9 +1,9 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Animated, FlatList, SafeAreaView, View} from 'react-native';
-import {Sunburst} from '../../components/Chart';
 import HeaderNav from '../../components/Layout/Header/HeaderNav';
 import Onboarding from '../../components/Onboarding/Onboarding';
 import Paginator from '../../components/Onboarding/Paginator';
+import {AsyncStorageUtils} from '../../utils/asyncStorageUtils';
 import AnnualSummary from './AnnualSummary/AnnualSummary';
 import Dashboard from './Dashboard/Dashboard';
 import {styles} from './Home.style';
@@ -20,8 +20,10 @@ const data = [
   },
 ];
 
-const Home = (props: any) => {
-  const [firstLogin, setFirstLogin] = useState(false);
+type FirstConnection = 'false' | 'true';
+
+const Home = () => {
+  const [firstLogin, setFirstLogin] = useState<FirstConnection>('false');
   const [done, setDone] = useState(true);
 
   const [currentIndex, setcurrentIndex] = useState(0);
@@ -30,8 +32,18 @@ const Home = (props: any) => {
   const timeout = () =>
     setTimeout(() => {
       setDone(true);
-      setFirstLogin(false);
+      // setFirstLogin(false);
     }, 3000);
+
+  useEffect(() => {
+    AsyncStorageUtils.checkFirstConnection().then(res => {
+      console.log(
+        '🚀 ~ file: Home.tsx ~ line 38 ~ AsyncStorageUtils.checkFirstConnection ~ res',
+        res,
+      );
+      setFirstLogin(res);
+    });
+  }, []);
 
   const slideRef = useRef(null);
 
@@ -43,7 +55,7 @@ const Home = (props: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {!firstLogin && done ? (
+      {(!firstLogin || firstLogin === 'false') && done ? (
         <View style={{}}>
           <HeaderNav />
           <View style={styles.homeItemContainer}>
