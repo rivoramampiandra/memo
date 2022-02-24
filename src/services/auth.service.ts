@@ -4,11 +4,19 @@ import {AsyncStorageUtils} from '../utils/asyncStorageUtils';
 
 export class AuthService {
   static async login(data: ILoginInfo) {
-    return await axiosClient.post('user/authenticate', data);
+    try {
+      const res = await axiosClient.post('user/authenticate', data);
+      if (!res.data) return null;
+      console.log('eto', res);
+      await AsyncStorageUtils.createToken(res.data.token);
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
   static async signup(data: PersonnalInfo) {
-    return await axiosClient.post('user/user', data);
+    return await axiosClient.post('user', data);
   }
 
   static async signupAddCarInfo(data: any) {
@@ -19,8 +27,8 @@ export class AuthService {
     return AsyncStorageUtils.getToken();
   }
 
-  static logout() {
-    return AsyncStorageUtils.removeToken();
+  static async logout() {
+    return await AsyncStorageUtils.removeToken();
   }
 
   static async authHeader() {
