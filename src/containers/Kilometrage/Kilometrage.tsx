@@ -1,11 +1,12 @@
 import {Button, Icon, Text} from '@ui-kitten/components';
 import React, {RefObject, useEffect, useRef, useState} from 'react';
-import {View, TouchableOpacity, useWindowDimensions} from 'react-native';
+import {View, TouchableOpacity, useWindowDimensions, Image} from 'react-native';
 import Wrapper from '../../components/Layout/Wrapper';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {launchCamera} from 'react-native-image-picker';
 //@ts-ignore:next-line
 import Picker from 'react-native-roll-picker';
 import {styles} from './Kilometrage.style';
+import image from '../../constant/image';
 
 type PickerRefType = HTMLElement | null | undefined;
 
@@ -86,10 +87,14 @@ const Kilometrage = (props: any) => {
           />
         </TouchableOpacity>
         <View>
-          <Text category={'h6'}>Kilometrage global</Text>
+          <Text category="h1">Kilometrage global</Text>
         </View>
         <TouchableOpacity onPress={takePicture}>
-          <Icon name="camera-outline" fill="#000" style={styles.defaultIcon} />
+          <Image
+            source={image.ADD_PHOTO}
+            style={{width: 32, height: 32}}
+            resizeMode="contain"
+          />
         </TouchableOpacity>
       </View>
       {/* <Text>{distance}</Text> */}
