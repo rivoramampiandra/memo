@@ -1,13 +1,7 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Button, Card, Divider, Icon, Modal, Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  useWindowDimensions,
-} from 'react-native';
+import {View, TouchableOpacity, Image, useWindowDimensions} from 'react-native';
 import {Indicator} from '../../components/Indicator';
 import Wrapper from '../../components/Layout/Wrapper';
 import image from '../../constant/image';
@@ -19,14 +13,14 @@ const Notification = () => {
   const {width} = useWindowDimensions();
 
   return (
-    <View style={{position: 'absolute', left: -12, bottom: 0}}>
-      <View style={{flexDirection: 'row'}}>
+    <View style={{position: 'absolute', bottom: 0}}>
+      <View style={{flexDirection: 'row', flex: 1, marginBottom: 14}}>
         <Icon
           name="info-outline"
           fill="#000"
           style={{width: 16, height: 16, marginLeft: 12}}
         />
-        <View>
+        <View style={{width: '90%'}}>
           <Text style={{fontSize: 12, marginBottom: 14}}>
             Le coût moyen de cette intervention varie selon les modèles et les
             réparateurs, comptez entre :
@@ -42,15 +36,19 @@ const Notification = () => {
           </Text>
         </View>
       </View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
         <Button
-          style={{flex: 1, marginHorizontal: 5}}
+          style={{flex: 1, marginHorizontal: 5, borderRadius: 10}}
           status="primary"
           onPress={() => setModalVisibility_(true)}>
           Tout va bien
         </Button>
         <Button
-          style={{flex: 1}}
+          style={{flex: 1, borderRadius: 10}}
           status="danger"
           onPress={() => navigation.navigate('Promotions' as any)}>
           Faire le nécessaire
