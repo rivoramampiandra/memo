@@ -20,4 +20,5 @@ export default {
   LOGO_2: require('../assets/images/logo2.png'),
   LOGO_3: require('../assets/images/logo3.png'),
   LOGO_4: require('../assets/images/logo4.png'),
+  ADD_PHOTO: require('../assets/images/add_photo.png'),
 };
