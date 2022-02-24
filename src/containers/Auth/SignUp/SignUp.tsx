@@ -8,11 +8,11 @@ import Step2 from './Steps/Step2';
 
 const steps = [
   {
-    subTitle: 'étape 1/2 - vos informations',
+    subTitle: 'Etape 1/2 - vos informations',
     buttonText: "Passer à l'étape 2",
   },
   {
-    subTitle: 'étape 2/2 - vos voitures',
+    subTitle: 'Etape 2/2 - vos voitures',
     buttonText: 'Démarrer',
   },
 ];
@@ -28,7 +28,6 @@ const SignUp = ({navigation}: any) => {
       return;
     }
     setSubTitle(steps[value - 1].subTitle);
-    setButtonText(steps[value - 1].buttonText);
     setStep(value);
   };
 
@@ -37,19 +36,24 @@ const SignUp = ({navigation}: any) => {
       <Header navigation={navigation} goBack />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.titleContainer}>
-          <Text style={[styles.bold, styles.title]}>S'inscrire</Text>
-          <Text>{subTitle}</Text>
+          <Text style={[styles.title]} category="s2">
+            S'inscrire
+          </Text>
+          <Text category="label">{subTitle}</Text>
         </View>
-        <View>{step === 1 && <Step1 navigation={navigation} />}</View>
-        <View>{step === 2 && <Step2 />}</View>
         <View>
-          <TouchableOpacity
-            onPress={() => handleValidation(step + 1)}
-            style={styles.button}>
-            <Text style={{...styles.btnText, ...styles.bold}}>
-              {buttonText}
-            </Text>
-          </TouchableOpacity>
+          {step === 1 && (
+            <Step1
+              navigation={navigation}
+              step={step}
+              handleValidation={handleValidation}
+            />
+          )}
+        </View>
+        <View>
+          {step === 2 && (
+            <Step2 step={step} handleValidation={handleValidation} />
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
