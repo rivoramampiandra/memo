@@ -7,9 +7,9 @@ import Modal from '../Modal/Modal';
 import {styles} from './Indicator.style';
 
 const Metric = () => {
-  const MAX = 50_000;
-  const DIVISER = 5_000;
-  const INTERVAL = 10_000;
+  const MAX = 50000;
+  const DIVISER = 5000;
+  const INTERVAL = 10000;
   const length = (MAX + INTERVAL) / DIVISER + 1;
   const data = new Array(length);
   data.fill(0);
@@ -21,7 +21,7 @@ const Metric = () => {
 
   return (
     <View style={styles.metricContainer}>
-      {data.map((item, index) => (
+      {data.map(index => (
         <View
           key={index}
           style={{
@@ -39,7 +39,7 @@ const Metric = () => {
           index === 6 ||
           index === 10 ||
           index === 14 ? (
-            <Text style={styles.unitText}>{String((index * 10_000) / 2)}</Text>
+            <Text style={styles.unitText}>{String((index * 10000) / 2)}</Text>
           ) : (
             <></>
           )}
