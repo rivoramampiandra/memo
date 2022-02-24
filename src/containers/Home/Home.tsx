@@ -32,15 +32,10 @@ const Home = () => {
   const timeout = () =>
     setTimeout(() => {
       setDone(true);
-      // setFirstLogin(false);
     }, 3000);
 
   useEffect(() => {
     AsyncStorageUtils.checkFirstConnection().then(res => {
-      console.log(
-        '🚀 ~ file: Home.tsx ~ line 38 ~ AsyncStorageUtils.checkFirstConnection ~ res',
-        res,
-      );
       setFirstLogin(res);
     });
   }, []);
