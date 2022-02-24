@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
     marginTop: 6,
     paddingHorizontal: 16,
+    fontFamily: 'Montserrat-Regular',
   },
   composite: {
     flexDirection: 'row',
