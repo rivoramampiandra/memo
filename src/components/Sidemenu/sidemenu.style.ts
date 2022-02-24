@@ -8,11 +8,11 @@ export const styles = StyleSheet.create({
     padding: 25,
   },
   item: {
-    paddingVertical: 18,
+    paddingVertical: 10,
     paddingLeft: 12,
+    marginVertical: 6,
   },
   textItem: {
-    fontWeight: '700',
     textTransform: 'uppercase',
   },
   activeItem: {
@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#24272D',
     borderBottomStyle: 'solid',
-    marginTop: 8,
   },
   activeListe: {
     borderLeftColor: 'red',
