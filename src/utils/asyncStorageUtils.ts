@@ -8,33 +8,39 @@ export class AsyncStorageUtils {
 
   static async checkFirstConnection(): Promise<FirstConnection> {
     const res = await AsyncStorage.getItem('@firsttime');
-    console.log(
-      '🚀 ~ file: asyncStorageUtils.ts ~ line 9 ~ AsyncStorageUtils ~ checkFirstConnection ~ res',
-      res,
-    );
-    if (!res) return 'true';
-    console.log('eto', res);
-    await AsyncStorage.setItem('@firsttime', 'false');
+    if (!res) {
+      await AsyncStorage.setItem('@firsttime', 'false');
+      return 'true';
+    }
     return 'false';
   }
 
   static async unsetFirstLogin() {
-    AsyncStorage.setItem('@firstlogin', 'false');
+    await AsyncStorage.setItem('@firstlogin', 'false');
   }
 
   static async createToken(token: string) {
-    AsyncStorage.setItem('@token', token);
+    await AsyncStorage.setItem('@token', token);
   }
 
   static async getToken() {
     return await AsyncStorage.getItem('@token');
   }
 
-  static async isAuthenticate() {
-    return !!this.getToken();
+  static async isLoggedIn() {
+    const res = await this.getToken();
+    return !!res;
   }
 
   static async removeToken() {
-    AsyncStorage.removeItem('@token');
+    return await AsyncStorage.removeItem('@token');
+  }
+
+  static async currentCar(id: number) {
+    return await AsyncStorage.setItem('carId', String(id));
+  }
+
+  static async getCurrentCarId() {
+    return await AsyncStorage.getItem('carId');
   }
 }
