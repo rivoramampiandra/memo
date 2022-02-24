@@ -5,7 +5,14 @@
 import 'react-native';
 
 describe('authentication test', () => {
-  it('should return token', () => undefined);
-  it('return false if user logged out', () => undefined);
-  it('return true if user logged in', () => undefined);
+  //WIP:
+  it('should return token', () => {
+    expect(true).toBe(true);
+  });
+  it('return false if user logged out', () => {
+    expect(true).toBe(true);
+  });
+  it('return true if user logged in', () => {
+    expect(true).toBe(true);
+  });
 });
