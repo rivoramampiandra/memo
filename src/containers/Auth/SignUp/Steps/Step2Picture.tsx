@@ -5,6 +5,8 @@ import ListItem from '../../../../components/List/ListItem/ListItem';
 import {styles} from '../SignUp.style';
 
 const Step2Picture = (props: any) => {
+  const {imageUri, ocrdata} = props;
+
   return (
     <View style={styles.docInfoContainer}>
       <View style={styles.imageContainer}>
@@ -16,22 +18,22 @@ const Step2Picture = (props: any) => {
           />
         </TouchableOpacity>
         <Image
-          source={require('../../../../assets/images/temp.png')}
+          source={{uri: imageUri}}
           style={styles.documentPicture}
           resizeMode="center"
         />
       </View>
       <View style={{marginVertical: 24}}>
-        <ListItem label={'Plaque d’immatriculation'} value={'EW - 800 - EJ'} />
+        <ListItem label={'Plaque d’immatriculation'} value={ocrdata.imat} />
         <ListItem
           label={'Date 1 ère immatriculation'}
-          value={'01 / 01 / 2009'}
+          value={ocrdata.dateMEC}
         />
         <ListItem
           label={'Numéro d’identification V.I.N.'}
-          value={'VFSIV2009ASIV2009'}
+          value={ocrdata.VIN}
         />
-        <ListItem label={'Numéro de formule '} value={'2009AS05284'} />
+        <ListItem label={'Numéro de formule '} value={'null'} />
       </View>
     </View>
   );
