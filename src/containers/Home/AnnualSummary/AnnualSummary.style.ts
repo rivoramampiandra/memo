@@ -14,12 +14,14 @@ export const styles = StyleSheet.create({
     marginTop: 16,
   },
   topSummary: {
-    flexGrow: 1,
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   bottomSummary: {
     flexGrow: 1,
     flexDirection: 'column',
+  },
+  half: {
+    maxWidth: '47%',
   },
 });
