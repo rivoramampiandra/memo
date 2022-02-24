@@ -3,11 +3,12 @@ import {Icon} from '@ui-kitten/components';
 
 interface ISummaryIndex {
   type: string;
-  rest: any;
+  style: any;
+  rest?: any;
 }
 
 const SummaryIndex = (props: ISummaryIndex) => {
-  const {type, ...rest} = props;
+  const {type, style, ...rest} = props;
 
   const iconTypes: Record<string, {color: string; icon: string}> = {
     default: {
@@ -21,7 +22,12 @@ const SummaryIndex = (props: ISummaryIndex) => {
   };
 
   return (
-    <Icon name={iconTypes[type].icon} fill={iconTypes[type].color} {...rest} />
+    <Icon
+      name={iconTypes[type].icon}
+      fill={iconTypes[type].color}
+      style={style}
+      {...rest}
+    />
   );
 };
 

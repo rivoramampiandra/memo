@@ -10,17 +10,18 @@ interface ISummary {
   count: string;
   type: string;
   size: 'default' | 'large';
+  style?: any;
 }
 
 const Summary = (props: ISummary) => {
-  const {title, unit, count, type, size} = props;
+  const {title, unit, count, type, size, style} = props;
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container, style]}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{title}</Text>
         <SummaryIndex
           type={type}
-          style={size === 'large' ? styles.largeImage : styles.image}
+          style={(size === 'large' ? styles.largeImage : styles.image) as any}
         />
       </View>
       <View style={styles.content}>
