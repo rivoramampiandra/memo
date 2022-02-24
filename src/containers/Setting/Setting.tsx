@@ -1,6 +1,6 @@
-import {Button} from '@ui-kitten/components';
+import {Button, Text} from '@ui-kitten/components';
 import React from 'react';
-import {View, Text, ScrollView, FlatList} from 'react-native';
+import {View, ScrollView, FlatList} from 'react-native';
 import Input from '../../components/Input/Input';
 import HeaderNav from '../../components/Layout/Header/HeaderNav';
 import Wrapper from '../../components/Layout/Wrapper';
@@ -50,27 +50,27 @@ const Setting = () => {
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled={true}>
         <View style={{marginVertical: 16}}>
-          <Text style={{fontSize: 20}}>Mes informations</Text>
+          <Text category="s1">Mes informations</Text>
         </View>
         <View style={{marginVertical: 16}}>
           <View>
-            <Text>Nom</Text>
+            <Text category="label">Nom</Text>
             <Input />
           </View>
           <View>
-            <Text>Prénom</Text>
+            <Text category="label">Prénom</Text>
             <Input />
           </View>
           <View>
-            <Text>Email</Text>
+            <Text category="label">Email</Text>
             <Input />
           </View>
           <View>
-            <Text>Ancien mot de passse</Text>
+            <Text category="label">Ancien mot de passse</Text>
             <Input secureTextEntry />
           </View>
           <View>
-            <Text>Confirmation mot de passe</Text>
+            <Text category="label">Confirmation mot de passe</Text>
             <Input secureTextEntry />
           </View>
         </View>
@@ -90,10 +90,12 @@ const Setting = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <Button style={{flex: 1, marginHorizontal: 5}} status="primary">
+          <Button
+            style={{flex: 1, marginHorizontal: 5, borderRadius: 10}}
+            status="primary">
             Enregistrer
           </Button>
-          <Button style={{flex: 1}} status="danger">
+          <Button style={{flex: 1, borderRadius: 10}} status="danger">
             Annuler
           </Button>
         </View>
