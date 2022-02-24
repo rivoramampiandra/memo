@@ -95,7 +95,7 @@ const Sunbrust = (props: any) => {
           left: 0,
           top: 45,
           transform: [{rotate: '-45deg'}],
-          fontSize: 18,
+          fontSize: 16,
         }}>
         Moteur
       </Text>
@@ -105,7 +105,7 @@ const Sunbrust = (props: any) => {
           right: 0,
           top: 45,
           transform: [{rotate: '45deg'}],
-          fontSize: 18,
+          fontSize: 16,
         }}>
         Pneus
       </Text>
@@ -115,7 +115,7 @@ const Sunbrust = (props: any) => {
           right: 0,
           bottom: 35,
           transform: [{rotate: '-45deg'}],
-          fontSize: 18,
+          fontSize: 16,
         }}>
         Carosserie
       </Text>
@@ -125,7 +125,7 @@ const Sunbrust = (props: any) => {
           left: 0,
           bottom: 45,
           transform: [{rotate: '45deg'}],
-          fontSize: 18,
+          fontSize: 16,
         }}>
         Freins
       </Text>
