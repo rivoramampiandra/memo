@@ -8,8 +8,12 @@ const ListItem = (props: any) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.label}>{label}</Text>
-        <Text style={styles.value}>{value}</Text>
+        <Text style={styles.label} category="label">
+          {label}
+        </Text>
+        <Text style={styles.value} category="label">
+          {value}
+        </Text>
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={() => true}>
