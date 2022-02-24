@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 12,
   },
-  textdefault: {fontSize: 54, fontWeight: '700'},
+  textdefault: {fontSize: 30, fontWeight: '700'},
   highlightText: {
     marginLeft: 32,
   },

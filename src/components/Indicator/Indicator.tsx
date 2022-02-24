@@ -53,10 +53,11 @@ const Indicator = (props: any) => {
   const [modalVisibility, setModalVisibility] = useState(false);
   const {width} = useWindowDimensions();
   const {status: indicatorStatus}: any = props;
+  const indicatorColors = ['#60BDAC', '#F28D55', '#FF5757'];
 
   return (
     <View style={styles.indicatorContainer}>
-      <Text>Dernière intervention</Text>
+      <Text style={{fontSize: 10}}>Dernière intervention</Text>
       <Text
         style={styles.textdefault}
         status={indicatorStatus === 'warning' ? 'danger' : 'basic'}>
@@ -72,7 +73,7 @@ const Indicator = (props: any) => {
           start={{x: 0.0, y: 0.5}}
           end={{x: 1, y: 0.5}}
           locations={[0.5, 0.75, 1]}
-          colors={['#60BDAC', '#F28D55', '#FF5757']}
+          colors={indicatorColors}
           style={styles.gradientContainer}
         />
         <Metric />
