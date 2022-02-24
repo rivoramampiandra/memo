@@ -40,66 +40,89 @@ const Intervention = (props: any) => {
   };
   return (
     <Wrapper>
-      <View style={styles.headerContainer}>
-        <TouchableOpacity
-          onPress={() => props.navigation.goBack()}
-          style={styles.closeBtn}>
-          <Text style={styles.close}>Fermer</Text>
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Ajout intervention</Text>
-      </View>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        nestedScrollEnabled={true}>
-        <View>
-          <TouchableOpacity onPress={takePicture} style={styles.outlinedButton}>
-            <Text style={styles.btnTextOutlined}>
-              Photo de votre carte grise
-            </Text>
+      <View>
+        <View style={styles.headerContainer}>
+          <TouchableOpacity
+            onPress={() => props.navigation.goBack()}
+            style={styles.closeBtn}>
+            <Text style={styles.close}>Fermer</Text>
           </TouchableOpacity>
-        </View>
-        <Divider />
-        <View>
-          <Text style={{fontSize: 20, marginVertical: 12}}>
-            Renseigner manuellement
+          <Text style={styles.headerTitle} category="h1">
+            Ajout intervention
           </Text>
-
-          <View>
-            <Text>Date</Text>
-            <Input />
+        </View>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          nestedScrollEnabled={true}>
+          <View style={{marginBottom: 50}}>
+            <View>
+              <TouchableOpacity
+                onPress={takePicture}
+                style={styles.outlinedButton}>
+                <Text style={styles.btnTextOutlined}>
+                  Photo de votre carte grise
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <Divider />
+            <View>
+              <Text style={{fontSize: 16, marginVertical: 12}}>
+                Renseigner manuellement
+              </Text>
+              <View>
+                <Text category="label">Date</Text>
+                <Input />
+              </View>
+              <View>
+                <Text category="label">Kilomètre</Text>
+                <Input />
+              </View>
+              <View>
+                <Text category="label">
+                  Quel prestations avec vous réalisee(s)
+                </Text>
+                <InputComposite placeholder="vidange, plaquettes avant..." />
+              </View>
+            </View>
+            <View style={{marginVertical: 12}}>
+              {data.length > 0 ? (
+                <FlatList
+                  data={data}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  bounces={false}
+                  scrollEnabled={false}
+                  renderItem={({item}) => <InterventionItem item={item} />}
+                />
+              ) : (
+                <NoIntervention />
+              )}
+            </View>
           </View>
-          <View>
-            <Text>Kilomètre</Text>
-            <Input />
-          </View>
-          <View>
-            <Text>Quel prestations avec vous réalisee(s)</Text>
-            <InputComposite placeholder="vidange, plaquettes avant..." />
+        </ScrollView>
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 12,
+            width: '100%',
+          }}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <Button
+              style={{flex: 1, marginHorizontal: 5, borderRadius: 10}}
+              status="primary">
+              Enregistrer
+            </Button>
+            <Button style={{flex: 1, borderRadius: 10}} status="danger">
+              Annuler
+            </Button>
           </View>
         </View>
-        <View style={{marginVertical: 12}}>
-          {data.length > 0 ? (
-            <FlatList
-              data={data}
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-              bounces={false}
-              scrollEnabled={false}
-              renderItem={({item}) => <InterventionItem item={item} />}
-            />
-          ) : (
-            <NoIntervention />
-          )}
-        </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Button style={{flex: 1, marginHorizontal: 5}} status="primary">
-            Enregistrer
-          </Button>
-          <Button style={{flex: 1}} status="danger">
-            Annuler
-          </Button>
-        </View>
-      </ScrollView>
+      </View>
     </Wrapper>
   );
 };

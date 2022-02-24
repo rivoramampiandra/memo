@@ -9,15 +9,15 @@ export const styles = StyleSheet.create({
   },
   closeBtn: {
     position: 'relative',
-    right: 80,
+    right: 60,
   },
   close: {
     fontSize: 14,
     color: '#036BF7',
   },
   headerTitle: {
-    fontSize: 20,
-    fontWeight: '500',
+    // fontSize: 20,
+    // fontWeight: '500',
     // marginLeft: 16,
     alignContent: 'center',
   },
@@ -37,14 +37,14 @@ export const styles = StyleSheet.create({
 
   //intervention
   interventionContainer: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#bfbfbf',
     borderRadius: 12,
     paddingVertical: 16,
     paddingHorizontal: 8,
     flex: 1,
     flexDirection: 'row',
-    marginVertical: 10,
+    marginVertical: 6,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
   itemImage: {
     width: 32,
     height: 32,
-    marginRight: 32,
+    marginRight: 18,
   },
   closeIcon: {
     width: 24,
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   title: {
-    fontSize: 18,
+    // fontSize: 18,
   },
   //Intervention ITEM
 
