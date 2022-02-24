@@ -22,7 +22,9 @@ const HeaderNav = () => {
           style={{width: 32, height: 32}}
         />
       </TouchableOpacity>
-      <Text style={styles.navTitle}>Ma peugeot 206</Text>
+      <Text style={styles.navTitle} category="h1">
+        Ma peugeot 206
+      </Text>
       <TouchableOpacity
         onPress={() => navigation.navigate('Intervention' as any)}>
         <Image
