@@ -26,12 +26,12 @@ const VehicleItem = (props: any) => {
             width: '40%',
           },
         ]}>
-        <Text>{name}</Text>
-        <Text>{register_number}</Text>
-        <Text>{distance} km</Text>
+        <Text category="c1">{name}</Text>
+        <Text category="c2">{register_number}</Text>
+        <Text category="c2">{distance} km</Text>
       </View>
       <View style={{width: '30%'}}>
-        <Text style={{flexShrink: 1}}>
+        <Text style={{flexShrink: 1}} category="c2">
           {description} {created_at}
         </Text>
       </View>
