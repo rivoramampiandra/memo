@@ -1,22 +1,7 @@
-import React from 'react';
-import {createContext, FC, useState} from 'react';
+import { createContext } from 'react';
 
-type AuthType = {
-  token: string | null;
-  setToken: (token: string) => void;
-};
+const initialState = {
+  loggedIn: false,
+}
 
-export const AuthContext: any = createContext<AuthType>({
-  token: null,
-  setToken: () => {},
-});
-
-export const AuthProvider: FC = ({children}) => {
-  const [token, setToken] = useState<string | null>(null);
-
-  return (
-    <AuthContext.Provider value={{setToken, token}}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+const AuthContext = createContext(initialState.loggedIn);
