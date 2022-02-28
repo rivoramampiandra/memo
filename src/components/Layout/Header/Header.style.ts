@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   navTitle: {
-    fontSize: 20,
-    fontWeight: '500',
+    // fontSize: 20,
+    // fontWeight: '500',
   },
 });
