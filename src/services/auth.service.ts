@@ -7,10 +7,11 @@ export class AuthService {
     try {
       const res = await axiosClient.post('user/authenticate', data);
       if (!res.data) return null;
-      console.log('eto', res);
       await AsyncStorageUtils.createToken(res.data.token);
+      await AsyncStorageUtils.setUserID(res.data.id);
       return res.data;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }
@@ -29,11 +30,5 @@ export class AuthService {
 
   static async logout() {
     return await AsyncStorageUtils.removeToken();
-  }
-
-  static async authHeader() {
-    const token = await AsyncStorageUtils.getToken();
-    if (!token) return {};
-    return {Authorization: 'Bearer ' + token};
   }
 }
