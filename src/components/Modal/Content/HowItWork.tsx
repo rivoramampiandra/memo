@@ -8,7 +8,9 @@ const HowItWork = () => {
     <View>
       <View style={styles.titleContainer}>
         <Icon name="info-outline" fill="#000" style={{width: 18, height: 18}} />
-        <Text style={styles.title}>Comment lire le curseur?</Text>
+        <Text style={styles.title} category="s1">
+          Comment lire le curseur?
+        </Text>
       </View>
       <View style={styles.content}>
         <Text>

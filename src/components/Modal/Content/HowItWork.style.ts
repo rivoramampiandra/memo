@@ -9,8 +9,6 @@ export const howItWorkStyles = StyleSheet.create({
     marginVertical: 16,
   },
   title: {
-    fontSize: 18,
-    fontWeight: '700',
     marginLeft: 12,
   },
   highlight: {
