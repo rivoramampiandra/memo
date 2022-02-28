@@ -71,20 +71,28 @@ const Step2 = (props: any) => {
     }
   };
 
+  const scanVehicleCard = async (pictureBlob: Blob) => {
+    try {
+      let data = new FormData();
+      data.append('carteGrise', pictureBlob);
+      return await CarService.ocrScanCard(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const takePicture = async () => {
     launchCamera({mediaType: 'photo'}, async (res: any) => {
       try {
         const pictureBlob = await getFileFromURI(res.assets[0].uri);
-        const scanResult: any = await CarService.ocrScanCard({
-          carteGrise: pictureBlob,
-        });
-        setOcrData(setOcrData);
+        const scanResult = await scanVehicleCard(pictureBlob);
         if (!scanResult) {
           //TODO: display error
+          console.warn('Scan error');
           return;
         }
+        setOcrData(scanResult);
         await addCar(scanResult);
-
         setPictureMode(true);
         setPictureUri(res.assets[0].uri);
       } catch (error) {
@@ -96,7 +104,7 @@ const Step2 = (props: any) => {
   const initError = () => setError(null);
 
   const onSubmit = async (data: any) => {
-    // handleValidation(step + 1);
+    handleValidation(step + 1);
   };
 
   return (
