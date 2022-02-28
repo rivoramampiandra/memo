@@ -1,48 +1,35 @@
 import {Button, Text} from '@ui-kitten/components';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, ScrollView, FlatList} from 'react-native';
 import Input from '../../components/Input/Input';
 import HeaderNav from '../../components/Layout/Header/HeaderNav';
 import Wrapper from '../../components/Layout/Wrapper';
 import image from '../../constant/image';
+import {CarService} from '../../services/car.service';
+import {useAppSelector} from '../../store/hooks';
+import {getCurrentUser} from '../../store/reducers/authSlice';
 import ItemWithDelete from './ItemWithDelete';
 
-const vehicles = [
-  {
-    name: 'Renault Laguna',
-    register_number: 'AB-400-EJ',
-    distance: '160 624',
-    logo: image.RENAULT,
-    description: '1.8 TFSI 118kW 160 ch',
-    created_at: '2008',
-  },
-  {
-    name: 'Audi A4 Avant',
-    register_number: 'AB-400-EJ',
-    distance: '160 624',
-    logo: image.AUDI,
-    description: '1.8 TFSI 118kW 160 ch',
-    created_at: '2008',
-  },
-  {
-    name: 'Peugeot 206',
-    register_number: 'AB-400-EJ',
-    distance: '160 624',
-    logo: image.PEUGEOT,
-    description: '1.8 TFSI 118kW 160 ch',
-    created_at: '2008',
-  },
-  {
-    name: 'Peugeot 3008',
-    register_number: 'AB-400-EJ',
-    distance: '160 624',
-    logo: image.PEUGEOT,
-    description: '1.8 TFSI 118kW 160 ch',
-    created_at: '2021',
-  },
-];
+const defaultValues = {
+  email: '',
+  password: '',
+};
 
 const Setting = () => {
+  const {firstName, lastName} = useAppSelector(getCurrentUser);
+  const [vehicles, setVehicles] = useState([]);
+
+  useEffect(() => {
+    const getCars = async () => {
+      const cars: any = await CarService.getCars();
+      if (!cars) return;
+      setVehicles(cars);
+    };
+    getCars();
+  }, []);
+
+  const renderItem = ({item}: any) => <ItemWithDelete item={item} />;
+
   return (
     <Wrapper>
       <HeaderNav />
@@ -55,11 +42,11 @@ const Setting = () => {
         <View style={{marginVertical: 16}}>
           <View>
             <Text category="label">Nom</Text>
-            <Input />
+            <Input editable={false} value={lastName || ''} />
           </View>
           <View>
             <Text category="label">Prénom</Text>
-            <Input />
+            <Input editable={false} value={firstName || ''} />
           </View>
           <View>
             <Text category="label">Email</Text>
@@ -75,13 +62,12 @@ const Setting = () => {
           </View>
         </View>
         <View style={{marginVertical: 16}}>
-          <Text style={{fontSize: 20}}>Mes véhicules</Text>
+          <Text category="s1">Mes véhicules</Text>
           <View style={{flex: 1}}>
             <FlatList
-              nestedScrollEnabled={true}
               data={vehicles}
               scrollEnabled={false}
-              renderItem={({item}) => <ItemWithDelete item={item} />}
+              renderItem={renderItem}
             />
           </View>
         </View>

@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     marginVertical: 4,
     justifyContent: 'space-between',
+    height: 74,
   },
   defaultIcon: {width: 32, height: 32},
 
