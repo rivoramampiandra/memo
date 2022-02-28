@@ -21,7 +21,7 @@ const Metric = () => {
 
   return (
     <View style={styles.metricContainer}>
-      {data.map(index => (
+      {data.map((item: any, index) => (
         <View
           key={index}
           style={{

@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   unit: {
     width: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#24272D',
   },
   minUnit: {
     height: 8,
@@ -27,10 +27,11 @@ export const styles = StyleSheet.create({
     height: 16,
   },
   unitText: {
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: '600',
     flex: 1,
     minHeight: 30,
+    color: '#24272D',
   },
   gradientContainer: {
     flex: 1,
