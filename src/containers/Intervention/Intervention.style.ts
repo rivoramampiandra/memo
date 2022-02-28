@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
     position: 'relative',
   },
   closeBtn: {
-    position: 'relative',
-    right: 60,
+    position: 'absolute',
+    left: 0,
   },
   close: {
     fontSize: 14,
@@ -67,6 +67,6 @@ export const styles = StyleSheet.create({
 
   //No ITEM
   noItemImage: {width: '100%', height: 250},
-  noItemText: {textAlign: 'center', fontSize: 16},
+  noItemText: {textAlign: 'center', fontSize: 13},
   //No ITEM
 });

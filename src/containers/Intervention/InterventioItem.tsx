@@ -17,7 +17,7 @@ const InterventionItem = (props: any): React.ReactElement => {
           <Text style={styles.title} category="p1">
             {title}
           </Text>
-          <Text category="p2">{description}</Text>
+          <Text category="p1">{description}</Text>
         </View>
       </View>
       <Icon name="close-outline" fill="#000" style={styles.closeIcon} />

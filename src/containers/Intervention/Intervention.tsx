@@ -60,7 +60,7 @@ const Intervention = (props: any) => {
                 onPress={takePicture}
                 style={styles.outlinedButton}>
                 <Text style={styles.btnTextOutlined}>
-                  Photo de votre carte grise
+                  Photo de votre facture
                 </Text>
               </TouchableOpacity>
             </View>
@@ -85,7 +85,7 @@ const Intervention = (props: any) => {
               </View>
             </View>
             <View style={{marginVertical: 12}}>
-              {data.length > 0 ? (
+              {/* {data.length > 0 ? (
                 <FlatList
                   data={data}
                   showsVerticalScrollIndicator={false}
@@ -94,9 +94,9 @@ const Intervention = (props: any) => {
                   scrollEnabled={false}
                   renderItem={({item}) => <InterventionItem item={item} />}
                 />
-              ) : (
-                <NoIntervention />
-              )}
+              ) : ( */}
+              <NoIntervention />
+              {/* )} */}
             </View>
           </View>
         </ScrollView>
@@ -117,7 +117,10 @@ const Intervention = (props: any) => {
               status="primary">
               Enregistrer
             </Button>
-            <Button style={{flex: 1, borderRadius: 10}} status="danger">
+            <Button
+              style={{flex: 1, borderRadius: 10}}
+              status="danger"
+              onPress={() => props.navigation.goBack()}>
               Annuler
             </Button>
           </View>

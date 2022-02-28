@@ -1,3 +1,4 @@
+import React from 'react';
 import {Text} from '@ui-kitten/components';
 import {Image, View} from 'react-native';
 import image from '../../constant/image';
