@@ -1,20 +1,17 @@
 import {Divider, Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  useWindowDimensions,
-} from 'react-native';
+import {View, Image, TouchableOpacity, ScrollView} from 'react-native';
 import images from '../../constant/image';
 import {AuthService} from '../../services/auth.service';
+import {useAppDispatch} from '../../store/hooks';
+import {setSignOut} from '../../store/reducers/authSlice';
 import Conditions from '../Modal/Content/Conditions';
 import Modal from '../Modal/Modal';
 import {styles} from './sidemenu.style';
 
 const Sidemenu = (props: any) => {
   const {navigation} = props;
+  const dispatch = useAppDispatch();
 
   const goto = (path: string) => {
     if (!path) return;
@@ -25,6 +22,7 @@ const Sidemenu = (props: any) => {
 
   const logout = async () => {
     await AuthService.logout();
+    dispatch(setSignOut());
   };
 
   return (
