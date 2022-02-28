@@ -131,7 +131,7 @@ const Sunbrust = (props: any) => {
       </Text>
       <PieChart
         style={{
-          width: width,
+          width,
           height: height * 0.45,
           position: 'absolute',
         }}
@@ -140,32 +140,44 @@ const Sunbrust = (props: any) => {
         data={backgroundData}
       />
       <PieChart
-        style={{width: width, height: height * 0.45, zIndex: 3}}
+        style={{width, height: height * 0.45, zIndex: 3}}
         innerRadius={170}
         outerRadius={175}
         data={data1}>
         <Svg>
           <PieChart
-            style={{width: width, height: height * 0.45, zIndex: 3}}
+            style={{
+              width,
+              height: height * 0.45,
+              zIndex: 3,
+            }}
             innerRadius={160}
             outerRadius={165}
             data={data2}>
             <Svg>
               <PieChart
-                style={{width: width, height: height * 0.45, zIndex: 3}}
+                style={{
+                  width,
+                  height: height * 0.45,
+                  zIndex: 3,
+                }}
                 innerRadius={150}
                 outerRadius={155}
                 data={data3}>
                 <Svg>
                   <PieChart
-                    style={{width: width, height: height * 0.45, zIndex: 3}}
+                    style={{
+                      width,
+                      height: height * 0.45,
+                      zIndex: 3,
+                    }}
                     innerRadius={140}
                     outerRadius={145}
                     data={data4}>
                     <Svg>
                       <PieChart
                         style={{
-                          width: width,
+                          width,
                           height: height * 0.45,
                           zIndex: 3,
                         }}
@@ -175,7 +187,7 @@ const Sunbrust = (props: any) => {
                         <Svg>
                           <PieChart
                             style={{
-                              width: width,
+                              width,
                               height: height * 0.45,
                               zIndex: 3,
                             }}
@@ -185,7 +197,7 @@ const Sunbrust = (props: any) => {
                             <Svg>
                               <PieChart
                                 style={{
-                                  width: width,
+                                  width,
                                   height: height * 0.45,
                                   zIndex: 3,
                                 }}
@@ -195,7 +207,7 @@ const Sunbrust = (props: any) => {
                                 <Svg>
                                   <PieChart
                                     style={{
-                                      width: width,
+                                      width,
                                       height: height * 0.45,
                                       zIndex: 3,
                                     }}
@@ -205,7 +217,7 @@ const Sunbrust = (props: any) => {
                                     <Svg>
                                       <PieChart
                                         style={{
-                                          width: width,
+                                          width,
                                           height: height * 0.45,
                                           zIndex: 3,
                                         }}
@@ -215,7 +227,7 @@ const Sunbrust = (props: any) => {
                                         <Svg>
                                           <PieChart
                                             style={{
-                                              width: width,
+                                              width,
                                               height: height * 0.45,
                                               zIndex: 3,
                                             }}
