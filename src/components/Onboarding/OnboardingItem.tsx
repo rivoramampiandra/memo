@@ -13,8 +13,12 @@ const OnboardingItem = (props: any) => {
         style={[styles.image, {width, resizeMode: 'contain'}]}
       />
       <View>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
+        <Text category="h1" style={styles.title}>
+          {item.title}
+        </Text>
+        <Text category="p1" style={styles.description}>
+          {item.description}
+        </Text>
       </View>
     </View>
   );

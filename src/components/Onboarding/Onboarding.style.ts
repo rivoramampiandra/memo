@@ -18,13 +18,9 @@ export const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   description: {
-    fontSize: 16,
-    fontWeight: '400',
     textAlign: 'center',
   },
   title: {
-    fontSize: 20,
-    fontWeight: '500',
     textAlign: 'center',
   },
 });

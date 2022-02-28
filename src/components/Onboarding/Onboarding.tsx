@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {View, FlatList, Animated} from 'react-native';
 import slides from '../../constant/onboarding';
+import {AsyncStorageUtils} from '../../utils/asyncStorageUtils';
 import {styles} from './Onboarding.style';
 import OnboardingItem from './OnboardingItem';
 import Paginator from './Paginator';
@@ -10,10 +11,15 @@ const Onboarding = (props: any) => {
   const [currentIndex, setcurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
 
+  const falseFirstLogin = async () => {
+    await AsyncStorageUtils.setFirstLogin();
+    setFirstLogin(true);
+  };
+
   const timeout = () =>
     setTimeout(() => {
       setDone(true);
-      setFirstLogin(false);
+      falseFirstLogin();
     }, 3000);
 
   const slideRef = useRef(null);
