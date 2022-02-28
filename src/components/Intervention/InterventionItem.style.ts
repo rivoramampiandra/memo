@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
+    height: 74,
   },
   imageContainer: {
     width: '15%',
