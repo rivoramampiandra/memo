@@ -7,12 +7,18 @@ import {launchCamera} from 'react-native-image-picker';
 import Picker from 'react-native-roll-picker';
 import {styles} from './Kilometrage.style';
 import image from '../../constant/image';
+import {CarService} from '../../services/car.service';
+import {getCurrentCar} from '../../store/reducers/carSlice';
+import {useAppSelector} from '../../store/hooks';
+import {getUserId} from '../../store/reducers/authSlice';
 
 type PickerRefType = HTMLElement | null | undefined;
 
 const Kilometrage = (props: any) => {
   const {navigation} = props;
   const {height} = useWindowDimensions();
+  const car = useAppSelector(getCurrentCar);
+  const userId = useAppSelector(getUserId);
   const [distance, setDistance] = useState(String(40).padStart(6));
   const defaultRange = {
     rowIndex0: '0',
@@ -49,9 +55,20 @@ const Kilometrage = (props: any) => {
     {index: '9'},
   ];
 
-  const updateDistance = () => {
+  const updateDistance = async () => {
     const dataRange = Object.values(range).join('');
     setDistance(dataRange);
+    try {
+      if (userId && car.id && distance) {
+        const res = await CarService.updateMilleage(
+          car.id,
+          userId,
+          Number(distance),
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const initDistance = () => {
@@ -74,14 +91,16 @@ const Kilometrage = (props: any) => {
     }
   }, [range]);
 
-  useEffect(() => {}, [_Picker0]);
+  useEffect(() => {
+    //TODO:get milleage
+  }, []);
 
   return (
     <Wrapper>
       <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon
-            name="chevron-left-outline"
+            name="arrow-ios-back-outline"
             fill="#000"
             style={styles.defaultIcon}
           />
