@@ -8,17 +8,17 @@
 
     "text-subtitle-1-font-size": 18,
     "text-subtitle-1-font-weight": "600",
-    "text-subtitle-1-font-family": "Montserrat-Medium",
+    "text-subtitle-1-font-family": "Montserrat-SemiBold",
 
-    "text-subtitle-2-font-size": 18,
+    "text-subtitle-2-font-size": 16,
     "text-subtitle-2-font-weight": "600",
     "text-subtitle-2-font-family": "Montserrat-SemiBold",
-
+    
     "text-paragraph-2-font-size": 15,
     "text-paragraph-2-font-weight": "600",
     "text-paragraph-2-font-family": "Montserrat-SemiBold",
 
-    "text-paragraph-1-font-size": 16,
+    "text-paragraph-1-font-size": 14,
     "text-paragraph-1-font-weight": "400",
     "text-paragraph-1-font-family": "Montserrat-Regular",
 
