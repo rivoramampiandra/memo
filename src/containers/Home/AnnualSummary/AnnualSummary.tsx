@@ -44,7 +44,7 @@ const AnnualSummary = () => {
             </View>
           </View>
           <View style={{flex: 1, marginTop: 38}}>
-            <Text>Intervention réalisée</Text>
+            <Text category="p2">Intervention réalisée</Text>
             <FlatList
               data={upcoming}
               renderItem={({item}) => <InterventionItem item={item} />}

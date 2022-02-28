@@ -13,32 +13,31 @@ const Dashboard = () => {
         TABLEAU DE BORD
       </Text>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-              padding: 10,
-            }}>
-            <Sunburst />
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+          }}>
+          <Sunburst />
+        </View>
+        <View style={{flex: 1, marginTop: 38}}>
+          <View>
+            <Text category="p2">A remplacer</Text>
+            <FlatList
+              data={toReplace}
+              renderItem={({item}) => <InterventionItem item={item} />}
+            />
           </View>
-          <View style={{flex: 1, marginTop: 38}}>
-            <View>
-              <Text>A remplacer</Text>
-              <FlatList
-                data={toReplace}
-                renderItem={({item}) => <InterventionItem item={item} />}
-              />
-            </View>
-            <View>
-              <Text>Intervention à venir</Text>
-              <FlatList
-                scrollEnabled={false}
-                data={upcoming}
-                renderItem={({item}) => <InterventionItem item={item} />}
-              />
-            </View>
+          <View>
+            <Text style={{marginTop: 33}} category="p2">
+              Intervention à venir
+            </Text>
+            <FlatList
+              scrollEnabled={false}
+              data={upcoming}
+              renderItem={({item}) => <InterventionItem item={item} />}
+            />
           </View>
         </View>
       </ScrollView>

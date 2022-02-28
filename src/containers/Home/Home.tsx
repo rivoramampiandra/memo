@@ -23,20 +23,15 @@ const data = [
 type FirstConnection = 'false' | 'true';
 
 const Home = () => {
-  const [firstLogin, setFirstLogin] = useState<FirstConnection>('false');
+  const [isFirstLogin, setIsFirstLogin] = useState<boolean>(false);
   const [done, setDone] = useState(true);
 
   const [currentIndex, setcurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  const timeout = () =>
-    setTimeout(() => {
-      setDone(true);
-    }, 3000);
-
   useEffect(() => {
     AsyncStorageUtils.checkFirstConnection().then(res => {
-      setFirstLogin(res);
+      setIsFirstLogin(res);
     });
   }, []);
 
@@ -50,7 +45,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {(!firstLogin || firstLogin === 'false') && done ? (
+      {isFirstLogin === true && done ? (
         <View style={{}}>
           <HeaderNav />
           <View style={styles.homeItemContainer}>
@@ -82,7 +77,7 @@ const Home = () => {
           </View>
         </View>
       ) : (
-        <Onboarding setDone={setDone} setFirstLogin={setFirstLogin} />
+        <Onboarding setDone={setDone} setFirstLogin={setIsFirstLogin} />
       )}
     </SafeAreaView>
   );
