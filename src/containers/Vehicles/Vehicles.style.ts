@@ -13,5 +13,5 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  addButtonText: {fontSize: 20, fontWeight: '600', marginLeft: 12},
+  addButtonText: {fontSize: 16, fontWeight: '600', marginLeft: 12},
 });

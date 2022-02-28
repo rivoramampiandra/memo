@@ -12,6 +12,10 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 7,
     borderLeftColor: '#25B0BB',
     borderStyle: 'solid',
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   logoContainer: {
     backgroundColor: '#F1F9FF',
@@ -20,6 +24,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 55,
     height: 55,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   logo: {width: 40, height: 40},
   contentText: {

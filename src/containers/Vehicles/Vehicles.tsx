@@ -1,12 +1,15 @@
 import {Divider, Icon, Text} from '@ui-kitten/components';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Image, View, TouchableOpacity, FlatList} from 'react-native';
 import Wrapper from '../../components/Layout/Wrapper';
 import image from '../../constant/image';
+import {CarService} from '../../services/car.service';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {changeCar, getCurrentCar} from '../../store/reducers/carSlice';
 import VehicleItem from './VehicleItem/VehicleItem';
 import {styles} from './Vehicles.style';
 
-const vehicles = [
+const vehicles_ = [
   {
     name: 'Renault Laguna',
     register_number: 'AB-400-EJ',
@@ -43,11 +46,22 @@ const vehicles = [
 
 const Vehicles = (props: any) => {
   const [currentItem, setCurrentItem] = useState(null);
-  const listRef = useRef(null);
+  const [vehicles, setVehicles] = useState([]);
+  const dispatch = useAppDispatch();
+  const currentCar = useAppSelector(getCurrentCar);
 
   const listItemChanged = useRef(({listItems}: any) => {
     setCurrentItem(listItems);
   }).current;
+
+  useEffect(() => {
+    const getCars = async () => {
+      const cars: any = await CarService.getCars();
+      if (!cars) return;
+      setVehicles(cars);
+    };
+    getCars();
+  }, []);
 
   return (
     <Wrapper>
@@ -60,7 +74,7 @@ const Vehicles = (props: any) => {
           />
         </TouchableOpacity>
 
-        <Text style={{fontSize: 20}}>Ma peugeot 206</Text>
+        <Text category="h1">Ma peugeot 206</Text>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('Intervention')}>
           <Image
@@ -80,7 +94,7 @@ const Vehicles = (props: any) => {
       <View>
         <TouchableOpacity style={styles.addButton}>
           <Image source={image.ADD_CAR} style={styles.defaultIcon} />
-          <Text style={styles.addButtonText}>Ajouter une voiture</Text>
+          <Text style={styles.addButtonText} >Ajouter une voiture</Text>
         </TouchableOpacity>
       </View>
     </Wrapper>
