@@ -47,9 +47,10 @@ const SignIn = ({navigation}: any) => {
       dispatch(
         setSignIn({
           isLoggedIn: true,
+          firstName: res.firstName,
+          lastName: res.lastName,
         }),
       );
-      // reset(defaultValues);
     } catch (error) {
       setError(true);
     }
@@ -112,14 +113,14 @@ const SignIn = ({navigation}: any) => {
               name="password"
             />
             {errors.password && (
-              <Text style={globalStyle.textError} category="c3">
+              <Text style={globalStyle.textError} category="c2">
                 Mot de passe invalide.
               </Text>
             )}
           </View>
           <View>
             {error && (
-              <Text style={globalStyle.textError} category="c3">
+              <Text style={globalStyle.textError} category="c2">
                 Mot de passe ou email invalide !
               </Text>
             )}
