@@ -6,17 +6,21 @@ export class AsyncStorageUtils {
   static create(options: any) {}
   static remove(options: any) {}
 
-  static async checkFirstConnection(): Promise<FirstConnection> {
-    const res = await AsyncStorage.getItem('@firsttime');
-    if (!res) {
-      await AsyncStorage.setItem('@firsttime', 'false');
-      return 'true';
-    }
-    return 'false';
+  static async setUserID(val: any) {
+    return await AsyncStorage.setItem('@userId', String(val));
   }
 
-  static async unsetFirstLogin() {
-    await AsyncStorage.setItem('@firstlogin', 'false');
+  static async getUserID() {
+    return await AsyncStorage.getItem('@userId');
+  }
+
+  static async checkFirstConnection(): Promise<boolean> {
+    const res = await AsyncStorage.getItem('@firstlogin');
+    return !!res;
+  }
+
+  static async setFirstLogin() {
+    return await AsyncStorage.setItem('@firstlogin', 'false');
   }
 
   static async createToken(token: string) {
