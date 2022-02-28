@@ -30,7 +30,7 @@ const PDFViewer = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <TouchableOpacity onPress={() => navigation.navigate('History' as any)}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home' as any)}>
           <Text style={{fontSize: 18, color: '#036BF7'}}>OK</Text>
         </TouchableOpacity>
         <Text>Disque de frein avant_14.05.20.pdf</Text>
