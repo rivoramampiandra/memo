@@ -1,8 +1,15 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+interface ICar {
+  id: number | null;
+  model?: string | null;
+  brand?: string | null;
+}
 
 const initialState: any = {
   currentCar: {
     id: null,
+    model: null,
+    brand: null,
   },
   allCars: [],
 };
@@ -11,8 +18,12 @@ const carSlice = createSlice({
   name: 'car',
   initialState,
   reducers: {
-    changeCar: (state: any, action: PayloadAction<number>) => {
-      state['currentCar'] = {id: action.payload};
+    changeCar: (state: any, action: PayloadAction<ICar>) => {
+      state = {
+        ...state,
+        currentCar: action.payload,
+      };
+      return state;
     },
   },
 });
