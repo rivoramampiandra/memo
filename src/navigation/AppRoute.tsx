@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import HomeNavigation from './HomeNavigation';
 import AuthNavigation from './AuthNavigation';
 import {AsyncStorageUtils} from '../utils/asyncStorageUtils';
-import {getLoginState, setLogin} from '../store/reducers/authSlice';
+import {getLoginState, setLogin, setSignIn} from '../store/reducers/authSlice';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
 
 export const AuthContext = createContext([]);
@@ -14,10 +14,13 @@ const AppRoute = () => {
 
   useEffect(() => {
     const bootstrapAsync = async () => {
-      let userToken;
       try {
-        userToken = await AsyncStorageUtils.getToken();
+        const userToken = await AsyncStorageUtils.getToken();
+        const userId = await AsyncStorageUtils.getUserID();
+        const firstName = await AsyncStorageUtils.getUserFirstName();
+        const lastName = await AsyncStorageUtils.getUserLastName();
         dispatch(setLogin(!!userToken));
+        dispatch(setSignIn({id: Number(userId), lastName, firstName}));
       } catch (error) {}
     };
     bootstrapAsync();
