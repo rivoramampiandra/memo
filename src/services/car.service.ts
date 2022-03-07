@@ -1,15 +1,15 @@
 import {AsyncStorageUtils} from './../utils/asyncStorageUtils';
-import axiosClient, {axiosOCRClient} from '../lib/axios.lib';
-import {AuthService} from './auth.service';
+import axiosClient, {apiOCR} from '../lib/axios.lib';
 
 export class CarService {
   static async ocrScanCard(data: any) {
-    return await axiosOCRClient.post('analyseCarteGrise', data);
+    return await apiOCR.post('analyseCarteGrise', data);
   }
 
-  static async getCar(carId: number) {
+  static async getCar(carId: number | null) {
     const userId = await AsyncStorageUtils.getUserID();
     if (!userId) throw new Error('Utilisateur inconnu');
+    if (!carId) throw new Error('Car introuvable');
     return await axiosClient.get(`user/${userId}/carEntity/${carId}`);
   }
 
@@ -33,6 +33,18 @@ export class CarService {
   static async updateMilleage(userId: number, carId: number, milleage: number) {
     return await axiosClient.put(
       `user/${userId}/carEntity/${carId}/mileage/${milleage}`,
+    );
+  }
+
+  static async getHistoriqueMileage(userId: string, carEntityId: number) {
+    return await axiosClient.get(
+      `user/${userId}/carEntity/${carEntityId}/historicMileage`,
+    );
+  }
+
+  static async getGlobalHealth(userId: string, carEntityId: number) {
+    return await axiosClient.get(
+      `user/${userId}/carEntity/${carEntityId}/globalHealth`,
     );
   }
 }
