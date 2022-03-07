@@ -7,6 +7,10 @@ const OCR_BASE_URL = 'https://ocr.memoracar.com';
 const OCR_PORT = '20000';
 const AUTHKEY = '8bf54562-3000-11eb-adc1-0242ac120002';
 
+//admin credential
+const ADMIN_EMAIL = 'admin@hotmail.fr';
+const ADMIN_PASSWORD = 'admin';
+
 const axiosClient = axios.create({
   baseURL: `${BASE_URL}:${PORT}/`,
   timeout: 3000,
@@ -31,12 +35,38 @@ axiosClient.interceptors.request.use(
 
 export default axiosClient;
 
-export const axiosOCRClient = axios.create({
+export const apiOCR = axios.create({
   baseURL: `${OCR_BASE_URL}:${OCR_PORT}/`,
-  timeout: 3000,
+  timeout: 60000,
   headers: {
     Accept: 'application/json',
-    Authorization: AUTHKEY,
-    'Content-type': 'multipart/form-data',
+    'Content-Type': 'multipart/form-data',
   },
+});
+
+apiOCR.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    config.headers!.Authorization = AUTHKEY;
+    config.headers!['Content-Type'] = 'multipart/form-data';
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
+
+apiOCR.interceptors.request.use(request => {
+  console.log(
+    '🚀🚀🚀🚀🚀🚀 Starting Request 🚀🚀🚀🚀🚀\n',
+    JSON.stringify(request, null, 2),
+  );
+  return request;
+});
+
+apiOCR.interceptors.response.use(response => {
+  console.log(
+    ' 📡📡📡📡📡 getting Response 📡\n',
+    JSON.stringify(response, null, 2),
+  );
+  return response;
 });
