@@ -60,6 +60,7 @@ const Step1 = (props: any) => {
       );
       handleValidation(step + 1);
     } catch (e) {
+      console.log('🚀 ~ file: Step1.tsx ~ line 63 ~ onSubmit ~ e', e);
       setError(true);
     }
   };

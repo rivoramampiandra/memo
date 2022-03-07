@@ -1,6 +1,6 @@
 import {Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import Header from '../../../components/Layout/Header/Header';
 import {styles} from './SignUp.style';
 import Step1 from './Steps/Step1';
@@ -42,7 +42,7 @@ const SignUp = ({navigation}: any) => {
           <Text category="label">{subTitle}</Text>
         </View>
         <View>
-          {step === 1 && (
+          {step === 1 && (  
             <Step1
               navigation={navigation}
               step={step}

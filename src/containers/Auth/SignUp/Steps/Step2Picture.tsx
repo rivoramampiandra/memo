@@ -1,11 +1,31 @@
-import {Icon} from '@ui-kitten/components';
-import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {Icon, Spinner, Text} from '@ui-kitten/components';
+import React, {useState} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import ListItem from '../../../../components/List/ListItem/ListItem';
+import {InvoiceService} from '../../../../services/invoice.service';
 import {styles} from '../SignUp.style';
 
 const Step2Picture = (props: any) => {
-  const {imageUri, ocrdata} = props;
+  const {imageUri, ocrdata, callback} = props;
+  const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
+
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      //TODO: add invoice step1
+      // await InvoiceService.addInvoiceStep1()
+      //TODO: add invoice step2
+      // await InvoiceService.addInvoiceStep2()
+      //TODO: go to home
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <View style={styles.docInfoContainer}>
@@ -35,6 +55,20 @@ const Step2Picture = (props: any) => {
         />
         <ListItem label={'Numéro de formule '} value={'null'} />
       </View>
+      {callback && (
+        <View>
+          <TouchableOpacity
+            onPress={handleSubmit}
+            style={styles.button}
+            disabled={loading}>
+            {loading ? (
+              <Spinner status="basic" style={{margin: 'auto'}} />
+            ) : (
+              <Text style={{...styles.btnText, ...styles.bold}}>Démarrer</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };

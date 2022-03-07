@@ -38,6 +38,8 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 10,
     marginVertical: 19,
+    display: 'flex',
+    alignItems: 'center',
   },
   outlinedButton: {
     padding: 12,

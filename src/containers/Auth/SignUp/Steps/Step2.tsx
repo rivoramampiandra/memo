@@ -1,11 +1,11 @@
-import {Text} from '@ui-kitten/components';
+import {Spinner, Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, Platform} from 'react-native';
 import {Divider} from '../../../../components/Divider';
 import Input from '../../../../components/Input/Input';
 import {styles} from '../SignUp.style';
 import Step2Picture from './Step2Picture';
-import {launchCamera} from 'react-native-image-picker';
+import {ImagePickerResponse, launchCamera} from 'react-native-image-picker';
 import {useAppSelector} from '../../../../store/hooks';
 import {
   getTempPassword,
@@ -14,7 +14,6 @@ import {
 } from '../../../../store/reducers/authSlice';
 import {Controller, useForm} from 'react-hook-form';
 import {globalStyle} from '../../../../assets/style';
-import {getFileFromURI} from '../../../../utils/imageUtils';
 import {CarService} from '../../../../services/car.service';
 import {AuthService} from '../../../../services/auth.service';
 
@@ -22,12 +21,12 @@ const Step2 = (props: any) => {
   const {handleValidation, step} = props;
   const [pictureMode, setPictureMode] = useState(false);
   const [pictureUri, setPictureUri] = useState(false);
-  const handleOpenCamera = () => {};
   const [error, setError] = useState<boolean | null>(null);
   const [ocrdata, setOcrData] = useState({});
   const password = useAppSelector(getTempPassword);
   const userId = useAppSelector(getUserId);
   const email = useAppSelector(getUserEmail);
+  const [scanLoading, setScanLoading] = useState(false);
 
   const defaultValues = {
     immatriculation: '',
@@ -71,34 +70,54 @@ const Step2 = (props: any) => {
     }
   };
 
-  const scanVehicleCard = async (pictureBlob: Blob) => {
+  const scanVehicleCard = async (pictureBlob: any) => {
     try {
-      let data = new FormData();
-      data.append('carteGrise', pictureBlob);
-      return await CarService.ocrScanCard(data);
+      let formData = new FormData();
+      const payload = {
+        uri:
+          Platform.OS === 'android'
+            ? pictureBlob.uri
+            : pictureBlob.uri.replace('file://', ''),
+        type: pictureBlob.type,
+        name: pictureBlob.fileName,
+      };
+      formData.append('carteGrise', payload);
+      return await CarService.ocrScanCard(formData);
     } catch (error) {
+      console.log(
+        '🚀 ~ file: Step2.tsx ~ line 81 ~ scanVehicleCard ~ error',
+        error,
+      );
       console.error(error);
     }
   };
 
   const takePicture = async () => {
-    launchCamera({mediaType: 'photo'}, async (res: any) => {
-      try {
-        const pictureBlob = await getFileFromURI(res.assets[0].uri);
-        const scanResult = await scanVehicleCard(pictureBlob);
+    try {
+      const res: ImagePickerResponse = await launchCamera({mediaType: 'photo'});
+      if (!res || !res.assets || !res.assets[0]) {
+        throw new Error('Erreur de la camera');
+      } else {
+        setScanLoading(true);
+        const scanResult = await scanVehicleCard(res.assets[0]);
         if (!scanResult) {
           //TODO: display error
           console.warn('Scan error');
+          setScanLoading(false);
           return;
         }
         setOcrData(scanResult);
         await addCar(scanResult);
         setPictureMode(true);
-        setPictureUri(res.assets[0].uri);
-      } catch (error) {
-        setError(true);
+        const uriValue: any = res.assets[0].uri;
+        setPictureUri(uriValue);
+        setScanLoading(false);
       }
-    });
+    } catch (error) {
+      console.error('error', JSON.stringify(error));
+      setScanLoading(false);
+      setError(true);
+    }
   };
 
   const initError = () => setError(null);
@@ -225,8 +244,15 @@ const Step2 = (props: any) => {
           <View>
             <TouchableOpacity
               onPress={handleSubmit(onSubmit)}
-              style={styles.button}>
-              <Text style={{...styles.btnText, ...styles.bold}}>Démarrer</Text>
+              style={styles.button}
+              disabled={scanLoading}>
+              {scanLoading ? (
+                <Spinner status="basic" style={{margin: 'auto'}} />
+              ) : (
+                <Text style={{...styles.btnText, ...styles.bold}}>
+                  Démarrer
+                </Text>
+              )}
             </TouchableOpacity>
           </View>
         </>

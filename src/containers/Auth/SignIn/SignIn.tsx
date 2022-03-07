@@ -51,6 +51,9 @@ const SignIn = ({navigation}: any) => {
           lastName: res.lastName,
         }),
       );
+      AsyncStorageUtils.setUserID(res.id);
+      AsyncStorageUtils.setUserFirstName(res.firstName);
+      AsyncStorageUtils.setUserLastName(res.lastName);
     } catch (error) {
       setError(true);
     }
