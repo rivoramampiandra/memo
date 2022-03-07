@@ -1,58 +1,25 @@
+import {useNavigation} from '@react-navigation/native';
 import {Divider, Icon, Text} from '@ui-kitten/components';
-import React, {useEffect, useRef, useState} from 'react';
-import {Image, View, TouchableOpacity, FlatList} from 'react-native';
-import Wrapper from '../../components/Layout/Wrapper';
+import React, {useEffect, useState} from 'react';
+import {
+  Image,
+  View,
+  TouchableOpacity,
+  useWindowDimensions,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
 import image from '../../constant/image';
 import {CarService} from '../../services/car.service';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {changeCar, getCurrentCar} from '../../store/reducers/carSlice';
+import {useAppSelector} from '../../store/hooks';
+import {getCurrentCar} from '../../store/reducers/carSlice';
 import VehicleItem from './VehicleItem/VehicleItem';
 import {styles} from './Vehicles.style';
 
-const vehicles_ = [
-  {
-    name: 'Renault Laguna',
-    register_number: 'AB-400-EJ',
-    distance: '160 624',
-    logo: image.RENAULT,
-    description: '1.8 TFSI 118kW 160 ch',
-    created_at: '2008',
-  },
-  {
-    name: 'Audi A4 Avant',
-    register_number: 'AB-400-EJ',
-    distance: '160 624',
-    logo: image.AUDI,
-    description: '1.8 TFSI 118kW 160 ch',
-    created_at: '2008',
-  },
-  {
-    name: 'Mercedes EQX',
-    register_number: 'AB-400-EJ',
-    distance: '160 624',
-    logo: image.MERCEDES,
-    description: '1.8 TFSI 118kW 160 ch',
-    created_at: '2018',
-  },
-  {
-    name: 'Peugeot 3008',
-    register_number: 'AB-400-EJ',
-    distance: '160 624',
-    logo: image.PEUGEOT,
-    description: '1.8 TFSI 118kW 160 ch',
-    created_at: '2021',
-  },
-];
-
 const Vehicles = (props: any) => {
-  const [currentItem, setCurrentItem] = useState(null);
   const [vehicles, setVehicles] = useState([]);
-  const dispatch = useAppDispatch();
   const currentCar = useAppSelector(getCurrentCar);
-
-  const listItemChanged = useRef(({listItems}: any) => {
-    setCurrentItem(listItems);
-  }).current;
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getCars = async () => {
@@ -63,10 +30,13 @@ const Vehicles = (props: any) => {
     getCars();
   }, []);
 
+  const {height, width} = useWindowDimensions();
+
   return (
-    <Wrapper>
+    <SafeAreaView style={{backgroundColor: '#fff', height}}>
       <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate('Home' as any)}>
           <Icon
             name="arrow-ios-back-outline"
             fill="#000"
@@ -74,7 +44,12 @@ const Vehicles = (props: any) => {
           />
         </TouchableOpacity>
 
-        <Text category="h1">Ma peugeot 206</Text>
+        <Text category="h1">
+          Ma{' '}
+          {currentCar.model && currentCar.brand
+            ? `${currentCar.brand} ${currentCar.model}`
+            : `car ${currentCar.id}`}
+        </Text>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('Intervention')}>
           <Image
@@ -85,19 +60,33 @@ const Vehicles = (props: any) => {
         </TouchableOpacity>
       </View>
       <Divider />
-      <View>
-        <FlatList
-          data={vehicles}
-          renderItem={({item}) => <VehicleItem item={item} withCloseButton />}
-        />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View
+          style={{
+            paddingBottom: 36,
+            backgroundColor: '#fff',
+          }}>
+          {vehicles.map((item: any) => (
+            <VehicleItem key={item.carEntityId} item={item} withCloseButton />
+          ))}
+        </View>
+        <View style={{backgroundColor: '#fff', marginTop: 10}}>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate('AddCar' as any)}>
+            <Image source={image.ADD_CAR} style={styles.defaultIcon} />
+            <Text style={styles.addButtonText} category="p2">
+              Ajouter une voiture
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+      <View style={{position: 'absolute', bottom: '5%', width: width}}>
+        <View style={styles.footer}>
+          <Image source={image.LOGO} style={styles.logo} resizeMode="center" />
+        </View>
       </View>
-      <View>
-        <TouchableOpacity style={styles.addButton}>
-          <Image source={image.ADD_CAR} style={styles.defaultIcon} />
-          <Text style={styles.addButtonText} >Ajouter une voiture</Text>
-        </TouchableOpacity>
-      </View>
-    </Wrapper>
+    </SafeAreaView>
   );
 };
 

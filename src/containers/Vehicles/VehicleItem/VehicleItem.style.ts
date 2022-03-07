@@ -4,18 +4,29 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 16,
-    justifyContent: 'space-between',
-    paddingLeft: 10,
+    marginVertical: 8,
   },
-  activeItem: {
-    borderLeftWidth: 7,
-    borderLeftColor: '#25B0BB',
-    borderStyle: 'solid',
+  subContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+  },
+  activeIndicator: {
+    height: '100%',
+    width: 5,
+    marginRight: 12,
+    opacity: 0,
+  },
+  iosActiveItem: {
     shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
+    shadowOffset: {width: -2, height: 2},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
+  androidActiveItem: {
+    shadowColor: '#171717',
+    elevation: 20,
   },
   logoContainer: {
     backgroundColor: '#F1F9FF',
@@ -31,8 +42,9 @@ export const styles = StyleSheet.create({
   },
   logo: {width: 40, height: 40},
   contentText: {
-    borderRightWidth: 2,
+    borderRightWidth: 1,
     borderRightColor: '#000',
-    margin: 5,
+    marginLeft: 36,
+    width: '30%',
   },
 });
