@@ -1,12 +1,26 @@
 import {Text} from '@ui-kitten/components';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, ScrollView, View} from 'react-native';
 import {InterventionItem} from '../../../components/Intervention';
 import {Summary} from '../../../components/Summary';
 import {upcoming} from '../../../constant/intervention-mock';
+import {InvoiceService} from '../../../services/invoice.service';
+import {useAppSelector} from '../../../store/hooks';
+import {getCurrentUser} from '../../../store/reducers/authSlice';
+import {AsyncStorageUtils} from '../../../utils/asyncStorageUtils';
 import {styles} from './AnnualSummary.style';
 
 const AnnualSummary = () => {
+  const getInvoiceBudget = async () => {
+    const id = AsyncStorageUtils.getUserID();
+    const {data} = await InvoiceService.getInvoices(Number(id));
+    console.log(
+      '🚀 ~ file: AnnualSummary.tsx ~ line 17 ~ getInvoiceBudget ~ data',
+      data,
+    );
+  };
+
+  useEffect(() => {});
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -20,7 +34,7 @@ const AnnualSummary = () => {
                 title="Budget annuel"
                 type="default"
                 unit="€"
-                count="540"
+                count="0"
                 size="default"
                 style={styles.half}
               />
@@ -28,7 +42,7 @@ const AnnualSummary = () => {
                 title="Interventions faites"
                 type="default"
                 unit={''}
-                count="8"
+                count="0"
                 size="default"
                 style={styles.half}
               />
@@ -38,17 +52,20 @@ const AnnualSummary = () => {
                 title="Kilometrage annuel"
                 type="critical"
                 unit="km"
-                count="8850"
+                count="0"
                 size="large"
               />
             </View>
           </View>
           <View style={{flex: 1, marginTop: 38}}>
             <Text category="p2">Intervention réalisée</Text>
-            <FlatList
+            {/* <FlatList
               data={upcoming}
               renderItem={({item}) => <InterventionItem item={item} />}
-            />
+            /> */}
+            <View style={{flex: 1, alignItems: 'center'}}>
+              <Text category="label">Aucun élément</Text>
+            </View>
           </View>
         </View>
       </ScrollView>

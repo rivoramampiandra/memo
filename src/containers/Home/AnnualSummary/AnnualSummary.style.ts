@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 20,
   },
   summaryContainer: {
     flex: 1,
