@@ -14,6 +14,22 @@ export class AsyncStorageUtils {
     return await AsyncStorage.getItem('@userId');
   }
 
+  static async getUserFirstName() {
+    return await AsyncStorage.getItem('@firstname');
+  }
+
+  static async getUserLastName() {
+    return await AsyncStorage.getItem('@lastname');
+  }
+
+  static async setUserFirstName(val: string) {
+    return await AsyncStorage.setItem('@firstname', val);
+  }
+
+  static async setUserLastName(val: string) {
+    return await AsyncStorage.setItem('@lastname', val);
+  }
+
   static async checkFirstConnection(): Promise<boolean> {
     const res = await AsyncStorage.getItem('@firstlogin');
     return !!res;
