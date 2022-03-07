@@ -19,16 +19,20 @@ const Kilometrage = (props: any) => {
   const {height} = useWindowDimensions();
   const car = useAppSelector(getCurrentCar);
   const userId = useAppSelector(getUserId);
-  const [distance, setDistance] = useState(String(40).padStart(6));
+  const {id} = useAppSelector(getCurrentCar);
+  const [distance, setDistance] = useState(String(0).padStart(6));
+
   const defaultRange = {
-    rowIndex0: '0',
-    rowIndex1: '0',
+    rowIndex0: '1',
+    rowIndex1: '2',
     rowIndex2: '0',
     rowIndex3: '0',
     rowIndex4: '0',
     rowIndex5: '0',
   };
+
   const [range, setRange] = useState(defaultRange);
+
   const _Picker0: RefObject<PickerRefType> = useRef();
   const _Picker1: RefObject<PickerRefType> = useRef();
   const _Picker2: RefObject<PickerRefType> = useRef();
@@ -55,45 +59,53 @@ const Kilometrage = (props: any) => {
     {index: '9'},
   ];
 
+  const getCarInfo = async () => {
+    const {data} = await CarService.getCar(id);
+    if (!data) return;
+    // setDistance(data.mileage);
+    normalizeMileageRange(data.mileage.toString());
+  };
+
+  const normalizeMileageRange = (value: string) => {
+    const rangeData = value.split('');
+    setRange({
+      rowIndex0: rangeData[0],
+      rowIndex1: rangeData[1],
+      rowIndex2: rangeData[2],
+      rowIndex3: rangeData[3],
+      rowIndex4: rangeData[4],
+      rowIndex5: rangeData[5],
+    });
+  };
+
   const updateDistance = async () => {
-    const dataRange = Object.values(range).join('');
-    setDistance(dataRange);
     try {
-      if (userId && car.id && distance) {
-        const res = await CarService.updateMilleage(
-          car.id,
-          userId,
-          Number(distance),
-        );
+      if (userId && car.id && distance && Number(distance) !== 0) {
+        await CarService.updateMilleage(userId, car.id, Number(distance));
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
-  const initDistance = () => {
-    const dataDistance = '320000';
-    const rangePicker = dataDistance.split('');
-    setRange({
-      rowIndex0: rangePicker[0],
-      rowIndex1: rangePicker[1],
-      rowIndex2: rangePicker[2],
-      rowIndex3: rangePicker[3],
-      rowIndex4: rangePicker[4],
-      rowIndex5: rangePicker[5],
-    });
-    setDistance(dataDistance);
+  useEffect(() => {}, [range]);
+
+  const handleUpdateMileage = () => {
+    const dataRange = Object.values(range).join('');
+    if (range && Number(dataRange) > 0) {
+      setDistance(dataRange);
+      if (Number(dataRange) > 0) {
+        updateDistance();
+      }
+    }
   };
 
   useEffect(() => {
-    if (range) {
-      updateDistance();
+    if (id) {
+      console.log('first id', id);
+      getCarInfo();
     }
-  }, [range]);
-
-  useEffect(() => {
-    //TODO:get milleage
-  }, []);
+  }, [id]);
 
   return (
     <Wrapper>
@@ -116,7 +128,9 @@ const Kilometrage = (props: any) => {
           />
         </TouchableOpacity>
       </View>
-      {/* <Text>{distance}</Text> */}
+      {/* <View>
+        <Text>{distance}</Text>
+      </View> */}
       <View style={[styles.pickerContainer, {height: height * 0.4}]}>
         <Picker
           data={PICKER_DATA}
@@ -168,7 +182,7 @@ const Kilometrage = (props: any) => {
         />
         <Text>Km</Text>
       </View>
-      <Button>Enregistrer</Button>
+      <Button onPress={handleUpdateMileage}>Enregistrer</Button>
     </Wrapper>
   );
 };
