@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   //item with delete
   withdeleteContainer: {
     borderColor: '#bfbfbf',
-    borderWidth: 2,
+    borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 15,
@@ -13,6 +13,5 @@ export const styles = StyleSheet.create({
     height: 74,
   },
   defaultIcon: {width: 32, height: 32},
-
   //item with delete
 });

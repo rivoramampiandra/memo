@@ -5,10 +5,7 @@ import {styles} from './Setting.style';
 import React from 'react';
 
 const ItemWithDelete = (props: any) => {
-  const {item} = props;
-  const handleDelete = () => {
-    console.log('delete');
-  };
+  const {item, handleDelete} = props;
 
   return (
     <View style={styles.withdeleteContainer}>
@@ -16,7 +13,7 @@ const ItemWithDelete = (props: any) => {
         <VehicleItem item={item} />
       </View>
       <View style={{width: '10%'}}>
-        <TouchableOpacity onPress={() => handleDelete}>
+        <TouchableOpacity onPress={() => handleDelete()}>
           <Icon name="close-outline" style={styles.defaultIcon} fill="#000" />
         </TouchableOpacity>
       </View>
