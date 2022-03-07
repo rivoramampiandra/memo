@@ -134,7 +134,9 @@ const History = () => {
             style={{width: 24, height: 24}}
           />
         </TouchableOpacity>
-        <Text style={{fontSize: 18}}>Synthèse de freinage</Text>
+        <Text style={{fontSize: 18}} category="s1">
+          Synthèse de freinage
+        </Text>
       </View>
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
@@ -180,7 +182,7 @@ const History = () => {
             {status === STATUS.WARNING ? (
               <Notification />
             ) : (
-              <TimelineContainer />
+              <>{/* <TimelineContainer /> */}</>
             )}
           </View>
         </View>
