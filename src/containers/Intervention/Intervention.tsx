@@ -1,6 +1,12 @@
 import {Button, Icon, Text} from '@ui-kitten/components';
-import React from 'react';
-import {View, TouchableOpacity, FlatList, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  TouchableOpacity,
+  FlatList,
+  ScrollView,
+  Platform,
+} from 'react-native';
 import Wrapper from '../../components/Layout/Wrapper';
 import {styles} from './Intervention.style';
 import {launchCamera} from 'react-native-image-picker';
@@ -10,6 +16,7 @@ import {InputComposite} from '../../components/Input';
 import image from '../../constant/image';
 import NoIntervention from './NoIntervention';
 import InterventionItem from './InterventioItem';
+import {InvoiceService} from '../../services/invoice.service';
 
 const data: any = [
   {
@@ -33,11 +40,36 @@ const data: any = [
 ];
 
 const Intervention = (props: any) => {
-  const takePicture = () => {
-    launchCamera({mediaType: 'photo'}, res => {
-      return;
-    });
+  const [] = useState();
+
+  const scanInvoice = async (picture: any) => {
+    try {
+      let formData = new FormData();
+      const payload = {
+        uri:
+          Platform.OS === 'android'
+            ? picture.uri
+            : picture.uri.replace('file://', ''),
+        type: picture.type,
+        name: picture.fileName,
+      };
+      formData.append('invoice', payload);
+      return await InvoiceService.scanIvoice(formData);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  const takePicture = async () => {
+    const picture = await launchCamera({mediaType: 'photo'});
+    if (!picture) throw new Error('Erreur de scan');
+    const scanResult = await scanInvoice(picture);
+    //TODO: add invoice step1
+    // await InvoiceService.addInvoiceStep1(scanResult)
+    //TODO: add invoice step2
+    // await InvoiceService.addInvoiceStep2(scanResult)
+  };
+
   return (
     <Wrapper>
       <View>
