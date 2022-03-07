@@ -8,17 +8,22 @@ export const styles = StyleSheet.create({
     padding: 25,
   },
   item: {
-    paddingVertical: 10,
+    flexDirection: 'row',
+    marginVertical: 5,
+  },
+  itemTextContainer: {
     paddingLeft: 12,
     marginVertical: 6,
+    paddingVertical: 8,
+    width: '80%',
   },
   textItem: {
     textTransform: 'uppercase',
   },
-  activeItem: {
-    borderLeftWidth: 4,
-    borderLeftStyle: 'solid',
-    borderLeftColor: '#30AAC7',
+  activeIndicator: {
+    height: '100%',
+    width: 4,
+    opacity: 1,
   },
   miniDivider: {
     width: '25%',
