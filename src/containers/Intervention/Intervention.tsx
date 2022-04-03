@@ -64,6 +64,14 @@ const Intervention = (props: any) => {
     const picture = await launchCamera({mediaType: 'photo'});
     if (!picture) throw new Error('Erreur de scan');
     const scanResult = await scanInvoice(picture);
+    console.log(
+      '🚀 ~ file: Intervention.tsx ~ line 67 ~ takePicture ~ scanResult',
+      scanResult,
+    );
+    if (!scanResult) {
+      //TODO: add error message or asking to rescan
+      return;
+    }
     //TODO: add invoice step1
     // await InvoiceService.addInvoiceStep1(scanResult)
     //TODO: add invoice step2
