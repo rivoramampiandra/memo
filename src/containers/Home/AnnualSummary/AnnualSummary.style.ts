@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 20,
   },
   summaryContainer: {
     flex: 1,
@@ -22,6 +21,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   half: {
-    maxWidth: '47%',
+    width: '47%',
   },
 });

@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Animated, FlatList, SafeAreaView, View} from 'react-native';
 import HeaderNav from '../../components/Layout/Header/HeaderNav';
+import Wrapper from '../../components/Layout/Wrapper';
 import Onboarding from '../../components/Onboarding/Onboarding';
 import Paginator from '../../components/Onboarding/Paginator';
 import {AsyncStorageUtils} from '../../utils/asyncStorageUtils';
@@ -44,42 +45,39 @@ const Home = () => {
   const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Wrapper>
       {isFirstLogin === true && done ? (
-        <View style={{}}>
-          <HeaderNav />
-          <View style={styles.homeItemContainer}>
-            <FlatList
-              data={data}
-              horizontal
-              pagingEnabled
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-              bounces={false}
-              keyExtractor={(item: any) => item.id}
-              scrollEventThrottle={32}
-              ref={slideRef}
-              onViewableItemsChanged={viewableItemsChanged}
-              viewabilityConfig={viewConfig}
-              onScroll={Animated.event(
-                [
-                  {
-                    nativeEvent: {
-                      contentOffset: {x: scrollX},
-                    },
+        <View style={styles.homeItemContainer}>
+          <FlatList
+            data={data}
+            horizontal
+            pagingEnabled
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            bounces={false}
+            keyExtractor={(item: any) => item.id}
+            scrollEventThrottle={32}
+            ref={slideRef}
+            onViewableItemsChanged={viewableItemsChanged}
+            viewabilityConfig={viewConfig}
+            onScroll={Animated.event(
+              [
+                {
+                  nativeEvent: {
+                    contentOffset: {x: scrollX},
                   },
-                ],
-                {useNativeDriver: false},
-              )}
-              renderItem={({item}) => <HomeItem component={item.component} />}
-            />
-            <Paginator data={data} scrollX={scrollX} />
-          </View>
+                },
+              ],
+              {useNativeDriver: false},
+            )}
+            renderItem={({item}) => <HomeItem component={item.component} />}
+          />
+          <Paginator data={data} scrollX={scrollX} />
         </View>
       ) : (
         <Onboarding setDone={setDone} setFirstLogin={setIsFirstLogin} />
       )}
-    </SafeAreaView>
+    </Wrapper>
   );
 };
 

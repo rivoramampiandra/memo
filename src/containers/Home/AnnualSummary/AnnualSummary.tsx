@@ -1,31 +1,91 @@
 import {Text} from '@ui-kitten/components';
-import React, {useEffect} from 'react';
-import {FlatList, ScrollView, View} from 'react-native';
-import {InterventionItem} from '../../../components/Intervention';
+import React, {useEffect, useState} from 'react';
+import {ScrollView, View} from 'react-native';
+import {EmptyElement} from '../../../components/EmptyElement';
 import {Summary} from '../../../components/Summary';
-import {upcoming} from '../../../constant/intervention-mock';
+import {CarService} from '../../../services/car.service';
 import {InvoiceService} from '../../../services/invoice.service';
 import {useAppSelector} from '../../../store/hooks';
-import {getCurrentUser} from '../../../store/reducers/authSlice';
+import {getCurrentCar} from '../../../store/reducers/carSlice';
 import {AsyncStorageUtils} from '../../../utils/asyncStorageUtils';
 import {styles} from './AnnualSummary.style';
 
+interface HistoricMilleage {
+  mileageHistoryId: number;
+  carEntity: any;
+  mileage: number;
+  date: string;
+}
+
 const AnnualSummary = () => {
-  const getInvoiceBudget = async () => {
-    const id = AsyncStorageUtils.getUserID();
-    const {data} = await InvoiceService.getInvoices(Number(id));
-    console.log(
-      '🚀 ~ file: AnnualSummary.tsx ~ line 17 ~ getInvoiceBudget ~ data',
-      data,
-    );
+  const [mileage, setMileage] = useState(0);
+  const [interventionsCount, setInterventionsCount] = useState(0);
+  const [annualBudget, setAnnualBudget] = useState(0);
+  const currentCar = useAppSelector(getCurrentCar);
+
+  const getAnnualBudget = async () => {
+    const data = await getInvoiceBudget();
+    if (!data || data.length === 0) return 0;
+    // faire la moyenne de la somme dans les invoice
+    // ! remove this after
+    // getAvgInvoice(data);
+    return 0;
   };
 
-  useEffect(() => {});
+  const getAvgInvoice = (data: any[]) => {
+    const sum = data.reduce((acc, item) => acc + item);
+    const avg = sum / data.length;
+    return avg;
+  };
+
+  const getAvgMileage = (data: any[]) => {
+    if (!data || data.length === 0) return 0;
+    return data.reduce((acc, item) => acc + Number(item.mileage)) / data.length;
+  };
+
+  const getCarInfo = async () => {
+    try {
+      const userId = await AsyncStorageUtils.getUserID();
+      if (!userId) throw new Error('Utilisateur inconnu');
+      const {data} = await CarService.getHistoriqueMileage(
+        userId,
+        currentCar.id,
+      );
+      if (!data) return 0;
+      getAvgMileage(data);
+      if (data.mileagePerDayEstimated && data.mileagePerDayEstimated !== -1) {
+        setMileage(data.mileagePerDayEstimated);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getIntervetions = async () => {
+    const userId = await AsyncStorageUtils.getUserID();
+    if (!userId) throw new Error('Utilisateur inconnu');
+    const {data} = await InvoiceService.getInvoices(Number(userId));
+    if (!data) return 0;
+    setInterventionsCount(data.length);
+  };
+
+  const getInvoiceBudget = async () => {
+    const id = await AsyncStorageUtils.getUserID();
+    const {data} = await InvoiceService.getInvoices(Number(id));
+    return data;
+  };
+
+  useEffect(() => {
+    getAnnualBudget();
+    getCarInfo();
+    getIntervetions();
+  }, [currentCar]);
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <Text style={styles.title} category="s1">
+          <Text style={styles.title} category="h2">
             Synthèse Annuelle
           </Text>
           <View style={styles.summaryContainer}>
@@ -34,7 +94,7 @@ const AnnualSummary = () => {
                 title="Budget annuel"
                 type="default"
                 unit="€"
-                count="0"
+                count={String(annualBudget)}
                 size="default"
                 style={styles.half}
               />
@@ -42,7 +102,7 @@ const AnnualSummary = () => {
                 title="Interventions faites"
                 type="default"
                 unit={''}
-                count="0"
+                count={String(interventionsCount)}
                 size="default"
                 style={styles.half}
               />
@@ -52,7 +112,7 @@ const AnnualSummary = () => {
                 title="Kilometrage annuel"
                 type="critical"
                 unit="km"
-                count="0"
+                count={String(mileage)}
                 size="large"
               />
             </View>
@@ -63,9 +123,7 @@ const AnnualSummary = () => {
               data={upcoming}
               renderItem={({item}) => <InterventionItem item={item} />}
             /> */}
-            <View style={{flex: 1, alignItems: 'center'}}>
-              <Text category="label">Aucun élément</Text>
-            </View>
+            <EmptyElement text="Aucune intervention" />
           </View>
         </View>
       </ScrollView>
