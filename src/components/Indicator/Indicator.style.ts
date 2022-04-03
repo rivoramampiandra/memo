@@ -41,6 +41,6 @@ export const styles = StyleSheet.create({
   linkbutton: {
     borderBottomColor: '#000',
     borderBottomWidth: 1,
-    fontFamily: 'Montserat',
+    fontFamily: 'Montserrat',
   },
 });
