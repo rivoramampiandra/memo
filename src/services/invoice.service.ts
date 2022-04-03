@@ -1,8 +1,9 @@
 import axiosClient, {apiOCR} from '../lib/axios.lib';
+import {OcrRequest} from '../lib/fetch.lib';
 
 export class InvoiceService {
   static async scanIvoice(data: FormData) {
-    return await apiOCR.post(`analyseInvoice`, data);
+    return await OcrRequest('POST', `analyseInvoice`, data);
   }
 
   static async addInvoiceStep1(data: any) {
