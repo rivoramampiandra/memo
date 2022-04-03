@@ -8,9 +8,27 @@ export class InterventionService {
 
   static getIntervetions() {}
 
-  static async getIntervetionsDone(userId: string, carEntityId: number) {
+  static async getIntervetionsDonePrediction(
+    userId: string,
+    carEntityId: number,
+  ) {
     return await axiosClient.get(
       `interventionDone/user/${userId}/carEntity/${carEntityId}/prediction`,
+    );
+  }
+
+  static async getIntervetionsDone(userId: string, carEntityId: number) {
+    return await axiosClient.get(
+      `interventionDone/user/${userId}/carEntity/${carEntityId}`,
+    );
+  }
+
+  static async getMaintenanceDonePrediction(
+    userId: string,
+    carEntityId: number,
+  ): Promise<AxiosResponse> {
+    return await axiosClient.get(
+      `maintenanceDone/user/${userId}/carEntity/${carEntityId}/prediction`,
     );
   }
 
@@ -19,7 +37,7 @@ export class InterventionService {
     carEntityId: number,
   ): Promise<AxiosResponse> {
     return await axiosClient.get(
-      `maintenanceDone/user/${userId}/carEntity/${carEntityId}/prediction`,
+      `maintenanceDone/user/${userId}/carEntity/${carEntityId}/`,
     );
   }
 }
