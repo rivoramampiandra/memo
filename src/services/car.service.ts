@@ -1,12 +1,13 @@
 import {AsyncStorageUtils} from './../utils/asyncStorageUtils';
 import axiosClient, {apiOCR} from '../lib/axios.lib';
+import {OcrRequest} from '../lib/fetch.lib';
 
 export class CarService {
   static async ocrScanCard(data: any) {
-    return await apiOCR.post('analyseCarteGrise', data);
+    return await OcrRequest('POST', 'analyseCarteGrise', data);
   }
 
-  static async getCar(carId: number | null) {
+  static async getCar(carId: string | null) {
     const userId = await AsyncStorageUtils.getUserID();
     if (!userId) throw new Error('Utilisateur inconnu');
     if (!carId) throw new Error('Car introuvable');
@@ -43,8 +44,12 @@ export class CarService {
   }
 
   static async getGlobalHealth(userId: string, carEntityId: number) {
-    return await axiosClient.get(
-      `user/${userId}/carEntity/${carEntityId}/globalHealth`,
-    );
+    try {
+      return await axiosClient.get(
+        `user/${userId}/carEntity/${carEntityId}/globalHealth`,
+      );
+    } catch (error) {
+      throw new Error('Erreur global health');
+    }
   }
 }
