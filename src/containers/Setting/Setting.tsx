@@ -17,7 +17,7 @@ import ItemWithDelete from './ItemWithDelete';
 import {styles} from './Setting.style';
 
 const Setting = () => {
-  const {firstName, lastName} = useAppSelector(getCurrentUser);
+  const {firstName, lastName, email} = useAppSelector(getCurrentUser);
   const [vehicles, setVehicles] = useState([]);
   const navigation = useNavigation();
   const userId = useAppSelector(getUserId);
@@ -92,7 +92,6 @@ const Setting = () => {
   return (
     <Wrapper>
       <View>
-        <HeaderNav />
         <ScrollView
           showsVerticalScrollIndicator={false}
           nestedScrollEnabled={true}>
@@ -123,13 +122,13 @@ const Setting = () => {
                       onChange(e);
                       initError();
                     }}
-                    value={value}
+                    value={email || ''}
                   />
                 )}
                 name="email"
               />
               {errors.email && (
-                <Text style={globalStyle.textError} category="c3">
+                <Text style={globalStyle.textError} category="label">
                   Email invalide.
                 </Text>
               )}
@@ -196,11 +195,14 @@ const Setting = () => {
           <View style={{marginTop: 16, marginBottom: '20%'}}>
             <Text category="s1">Mes véhicules</Text>
             <View style={{flex: 1}}>
-              <FlatList
-                data={vehicles}
-                scrollEnabled={false}
-                renderItem={renderItem}
-              />
+              {vehicles &&
+                vehicles.map((vehicle: any, index: number) => (
+                  <ItemWithDelete
+                    key={index}
+                    item={vehicle}
+                    handleDelete={() => handleDeleteCar(vehicle.carEntityId)}
+                  />
+                ))}
             </View>
           </View>
         </ScrollView>
