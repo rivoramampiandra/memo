@@ -25,8 +25,10 @@ const Summary = (props: ISummary) => {
         />
       </View>
       <View style={styles.content}>
-        <Text style={styles.count}>{count}</Text>
-        <Text>{unit}</Text>
+        <Text>
+          <Text style={styles.count}>{count}</Text>
+          <Text style={{fontSize: 15}}>{unit}</Text>
+        </Text>
       </View>
     </View>
   );

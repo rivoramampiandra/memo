@@ -13,11 +13,11 @@ const SummaryIndex = (props: ISummaryIndex) => {
   const iconTypes: Record<string, {color: string; icon: string}> = {
     default: {
       color: '#4CB6A2',
-      icon: 'diagonal-arrow-right-up-outline',
+      icon: 'diagonal-arrow-right-down-outline',
     },
     critical: {
       color: '#FF5757',
-      icon: 'diagonal-arrow-right-down-outline',
+      icon: 'diagonal-arrow-right-up-outline',
     },
   };
 
