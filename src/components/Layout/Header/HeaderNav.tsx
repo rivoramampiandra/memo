@@ -35,7 +35,7 @@ const HeaderNav = () => {
           Ma{' '}
           {currentCar.model && currentCar.brand
             ? `${currentCar.brand} ${currentCar.model}`
-            : `car ${currentCar.id}`}
+            : `car ${currentCar.id || ''}`}
         </Text>
       )}
       <TouchableOpacity
