@@ -6,12 +6,13 @@ import {
   useWindowDimensions,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import {styles} from './Modal.style';
 
 const Modal = (props: any) => {
   const {modalVisibility, closeModal, component} = props;
-  const {width} = useWindowDimensions();
+  const {width, height} = useWindowDimensions();
 
   return (
     <View>

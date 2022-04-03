@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
     zIndex: 1,
-    height: 100,
     elevation: 5,
   },
   modalContent: {

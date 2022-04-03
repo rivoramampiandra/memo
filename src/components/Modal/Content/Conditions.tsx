@@ -1,11 +1,11 @@
 import {Text} from '@ui-kitten/components';
 import React from 'react';
-import {View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {conditionStyles as styles} from './Condition.style';
 
 const Conditions = () => {
   return (
-    <View>
+    <SafeAreaView edges={['bottom']}>
       <Text category="s1" style={styles.title}>
         Condition general d'utilisation de l'application
       </Text>
@@ -40,7 +40,7 @@ const Conditions = () => {
         dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
