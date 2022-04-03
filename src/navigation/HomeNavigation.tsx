@@ -17,8 +17,13 @@ import {changeCar, getCurrentCar} from '../store/reducers/carSlice';
 import {CarService} from '../services/car.service';
 import HeaderNav from '../components/Layout/Header/HeaderNav';
 import MainStackNavigation from './MainNavigation';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const {Navigator, Screen} = createDrawerNavigator();
+
+const HomeStack = createNativeStackNavigator();
+
+const HomeNavigator = () => {};
 
 const HomeNavigation = () => {
   const navigation = useNavigation();
@@ -49,28 +54,29 @@ const HomeNavigation = () => {
           backgroundColor: '#fff',
           borderBottomRightRadius: 12,
         },
-        // try this to display header over drawer menu
-        // header: ({navigation, route, options}) => {
-        //   return <HeaderNav />;
-        // },
+        headerStyle: {
+          elevation: 0,
+          shadowOpacity: 0,
+          borderBottomWidth: 0,
+        },
       }}
+      initialRouteName="Home"
       drawerContent={props => <Sidemenu {...props} />}>
-      {currentCar && !currentCar.id ? (
-        <Screen name="Vehicles" component={Vehicles} />
-      ) : (
-        <>
-          <Screen name="Home" component={Home} />
-          <Screen name="Setting" component={Setting} />
-          <Screen name="Main" component={MainStackNavigation} />
-          <Screen name="Kilometrage" component={Kilometrage} />
-          <Screen name="Intervention" component={Intervention} />
-          <Screen name="Vehicles" component={Vehicles} />
-          <Screen name="PDFViewer" component={PDFViewer} />
-          <Screen name="History" component={History} />
-          <Screen name="Promotions" component={Promotions} />
-          <Screen name="AddCar" component={AddCar} />
-        </>
-      )}
+      <Screen
+        name="Home"
+        component={Home}
+        options={{
+          headerTitle: () => <HeaderNav />,
+        }}
+      />
+      <Screen name="Setting" component={Setting} />
+      <Screen name="Kilometrage" component={Kilometrage} />
+      <Screen name="Intervention" component={Intervention} />
+      <Screen name="Vehicles" component={Vehicles} />
+      <Screen name="PDFViewer" component={PDFViewer} />
+      <Screen name="History" component={History} />
+      <Screen name="Promotions" component={Promotions} />
+      <Screen name="AddCar" component={AddCar} />
     </Navigator>
   );
 };

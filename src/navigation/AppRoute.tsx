@@ -1,10 +1,12 @@
 import React, {createContext, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import HomeNavigation from './HomeNavigation';
 import AuthNavigation from './AuthNavigation';
 import {AsyncStorageUtils} from '../utils/asyncStorageUtils';
 import {getLoginState, setLogin, setSignIn} from '../store/reducers/authSlice';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
+import MainStackNavigation from './MainNavigation';
+import HomeNavigation from './HomeNavigation';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export const AuthContext = createContext([]);
 
@@ -27,9 +29,11 @@ const AppRoute = () => {
   }, [loginState]);
 
   return (
-    <NavigationContainer>
-      {loginState ? <HomeNavigation /> : <AuthNavigation />}
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        {loginState ? <MainStackNavigation /> : <AuthNavigation />}
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
