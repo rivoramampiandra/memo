@@ -9,6 +9,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
+import Wrapper from '../../components/Layout/Wrapper';
 import image from '../../constant/image';
 import {CarService} from '../../services/car.service';
 import {useAppSelector} from '../../store/hooks';
@@ -33,7 +34,7 @@ const Vehicles = (props: any) => {
   const {height, width} = useWindowDimensions();
 
   return (
-    <SafeAreaView style={{backgroundColor: '#fff', height}}>
+    <Wrapper>
       <View style={styles.headerContainer}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('Home' as any)}>
@@ -83,10 +84,10 @@ const Vehicles = (props: any) => {
       </ScrollView>
       <View style={{position: 'absolute', bottom: '5%', width: width}}>
         <View style={styles.footer}>
-          <Image source={image.LOGO} style={styles.logo} resizeMode="center" />
+          <Image source={image.LOGO} style={styles.logo} resizeMode="contain" />
         </View>
       </View>
-    </SafeAreaView>
+    </Wrapper>
   );
 };
 
