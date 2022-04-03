@@ -114,7 +114,7 @@ const Sidemenu = (props: any) => {
         </TouchableOpacity>
       </ScrollView>
       <View style={styles.footer}>
-        <Image source={images.LOGO} style={styles.logo} resizeMode="center" />
+        <Image source={images.LOGO} style={styles.logo} resizeMode="contain" />
         <Text category="c1" appearance="hint">
           Version 1.0
         </Text>

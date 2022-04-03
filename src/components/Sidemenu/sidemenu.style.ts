@@ -5,7 +5,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     borderBottomRightRadius: 15,
+    paddingLeft: 14,
     padding: 25,
+    paddinTop: 32,
   },
   item: {
     flexDirection: 'row',
@@ -19,6 +21,7 @@ export const styles = StyleSheet.create({
   },
   textItem: {
     textTransform: 'uppercase',
+    marginBottom: 4,
   },
   activeIndicator: {
     height: '100%',
@@ -41,7 +44,7 @@ export const styles = StyleSheet.create({
     color: '#24272D',
   },
   logo: {
-    height: 50,
+    height: '100%',
   },
   footer: {
     flex: 0.2,
