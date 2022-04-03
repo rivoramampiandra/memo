@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 16,
     marginTop: 6,
-    paddingHorizontal: 16,
+    padding: 12,
     fontFamily: 'Montserrat-Regular',
   },
   composite: {
