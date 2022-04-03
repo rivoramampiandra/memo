@@ -11,6 +11,8 @@ const Step2Picture = (props: any) => {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
+  const executeAction = callback();
+
   const handleSubmit = async () => {
     try {
       setLoading(true);
@@ -19,6 +21,7 @@ const Step2Picture = (props: any) => {
       //TODO: add invoice step2
       // await InvoiceService.addInvoiceStep2()
       //TODO: go to home
+      executeAction();
       setTimeout(() => {
         setLoading(false);
       }, 3000);

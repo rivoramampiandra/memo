@@ -1,12 +1,14 @@
-import CheckBox from '@react-native-community/checkbox';
+// import CheckBox from '@react-native-community/checkbox';
 import {Text} from '@ui-kitten/components';
 import React, {useEffect, useState} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {globalStyle} from '../../../assets/style';
+import Checkbox from '../../../components/Checkbox/Checkbox';
 import Input from '../../../components/Input/Input';
 import Header from '../../../components/Layout/Header/Header';
+import Wrapper from '../../../components/Layout/Wrapper';
 import {EMAIL_PATTER} from '../../../constant/pattern';
 import {AuthService} from '../../../services/auth.service';
 import {setSignIn} from '../../../store/reducers/authSlice';
@@ -24,6 +26,10 @@ const SignIn = ({navigation}: any) => {
 
   useEffect(() => {
     AsyncStorageUtils.checkFirstConnection();
+
+    return () => {
+      reset(defaultValues);
+    };
   }, []);
 
   const defaultValues = {
@@ -62,7 +68,7 @@ const SignIn = ({navigation}: any) => {
   const initError = () => setError(null);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Wrapper>
       <View style={{flex: 1}}>
         <Header navigation={navigation} />
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -90,7 +96,7 @@ const SignIn = ({navigation}: any) => {
               name="email"
             />
             {errors.email && (
-              <Text style={globalStyle.textError} category="c3">
+              <Text style={globalStyle.textError} category="label">
                 Email invalide.
               </Text>
             )}
@@ -130,13 +136,11 @@ const SignIn = ({navigation}: any) => {
           </View>
 
           <View style={[styles.horizontalFlex, styles.loginOption]}>
-            <View style={[styles.horizontalFlex]}>
-              <CheckBox
-                value={rememberMe}
-                onValueChange={() => handleRememberMe()}
-              />
-              <Text category="c2">Se souvenir de moi</Text>
-            </View>
+            <Checkbox
+              checked={rememberMe}
+              onChange={() => handleRememberMe()}
+              label="Se souvenir de moi"
+            />
             <TouchableOpacity>
               <Text category="c2">Mot de passe oublié ?</Text>
             </TouchableOpacity>
@@ -158,7 +162,7 @@ const SignIn = ({navigation}: any) => {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </Wrapper>
   );
 };
 

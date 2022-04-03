@@ -52,6 +52,7 @@ export const styles = StyleSheet.create({
   },
   documentPicture: {
     height: 100,
+    width: 50,
   },
   close: {
     position: 'absolute',

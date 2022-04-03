@@ -150,7 +150,7 @@ const Step2 = (props: any) => {
               name="immatriculation"
             />
             {errors.immatriculation && (
-              <Text style={globalStyle.textError} category="c3">
+              <Text style={globalStyle.textError} category="label">
                 Ce champ est requis
               </Text>
             )}
@@ -175,7 +175,7 @@ const Step2 = (props: any) => {
               name="immatriculationDate"
             />
             {errors.immatriculationDate && (
-              <Text style={globalStyle.textError} category="c3">
+              <Text style={globalStyle.textError} category="label">
                 Ce champ est requis
               </Text>
             )}
@@ -200,7 +200,7 @@ const Step2 = (props: any) => {
               name="licenseplate"
             />
             {errors.licenseplate && (
-              <Text style={globalStyle.textError} category="c3">
+              <Text style={globalStyle.textError} category="label">
                 Ce champ est requis
               </Text>
             )}
@@ -225,7 +225,7 @@ const Step2 = (props: any) => {
               name="formule"
             />
             {errors.formule && (
-              <Text style={globalStyle.textError} category="c3">
+              <Text style={globalStyle.textError} category="label">
                 Ce champ est requis
               </Text>
             )}

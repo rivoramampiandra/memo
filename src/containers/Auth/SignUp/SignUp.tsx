@@ -2,6 +2,7 @@ import {Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, View} from 'react-native';
 import Header from '../../../components/Layout/Header/Header';
+import Wrapper from '../../../components/Layout/Wrapper';
 import {styles} from './SignUp.style';
 import Step1 from './Steps/Step1';
 import Step2 from './Steps/Step2';
@@ -32,7 +33,7 @@ const SignUp = ({navigation}: any) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Wrapper>
       <Header navigation={navigation} goBack />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.titleContainer}>
@@ -42,7 +43,7 @@ const SignUp = ({navigation}: any) => {
           <Text category="label">{subTitle}</Text>
         </View>
         <View>
-          {step === 1 && (  
+          {step === 1 && (
             <Step1
               navigation={navigation}
               step={step}
@@ -56,7 +57,7 @@ const SignUp = ({navigation}: any) => {
           )}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </Wrapper>
   );
 };
 

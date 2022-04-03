@@ -1,5 +1,4 @@
-import CheckBox from '@react-native-community/checkbox';
-import {Text} from '@ui-kitten/components';
+import {CheckBox, Text} from '@ui-kitten/components';
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import Input from '../../../../components/Input/Input';
@@ -12,12 +11,14 @@ import {globalStyle} from '../../../../assets/style';
 import {AuthService} from '../../../../services/auth.service';
 import {useAppDispatch} from '../../../../store/hooks';
 import {setSignIn} from '../../../../store/reducers/authSlice';
+import {useNavigation} from '@react-navigation/native';
 
 const Step1 = (props: any) => {
   const {step, handleValidation} = props;
   const [modalVisibility, setModalVisibility] = useState(false);
   const [error, setError] = useState<boolean | null>(null);
   const dispatch = useAppDispatch();
+  const navigation = useNavigation();
 
   const defaultValues = {
     firstName: '',
@@ -38,6 +39,7 @@ const Step1 = (props: any) => {
   });
 
   const onSubmit = async (data: any) => {
+    navigation.navigate('AddCar' as any);
     try {
       const tempDate = new Date().toLocaleDateString('fr');
 
@@ -58,7 +60,7 @@ const Step1 = (props: any) => {
           id: res.data.id,
         }),
       );
-      handleValidation(step + 1);
+      navigation.navigate('AddCar' as any);
     } catch (e) {
       console.log('🚀 ~ file: Step1.tsx ~ line 63 ~ onSubmit ~ e', e);
       setError(true);
@@ -163,7 +165,7 @@ const Step1 = (props: any) => {
           </Text>
         )}
       </View>
-      <View>
+      <View style={{marginBottom: 16}}>
         <Controller
           control={control}
           rules={{
@@ -172,12 +174,12 @@ const Step1 = (props: any) => {
           render={({field: {onChange, onBlur, value}}) => (
             <View style={[styles.horizontalFlex]}>
               <CheckBox
-                value={value}
-                onValueChange={value => {
+                checked={value}
+                onChange={value => {
                   onChange(value);
                 }}
               />
-              <Text category="label">
+              <Text category="c2" style={{marginLeft: 18}}>
                 Accepter de recevoir des notifications
               </Text>
             </View>
@@ -197,14 +199,16 @@ const Step1 = (props: any) => {
           render={({field: {onChange, onBlur, value}}) => (
             <View style={styles.horizontalFlex}>
               <CheckBox
-                value={value}
-                onValueChange={value => {
+                checked={value}
+                onChange={value => {
                   onChange(value);
                 }}
               />
-              <Text category="label">Accepter les </Text>
+              <Text category="c2" style={{marginLeft: 18}}>
+                Accepter les{' '}
+              </Text>
               <TouchableOpacity onPress={() => setModalVisibility(true)}>
-                <Text style={styles.conditionText} category="label">
+                <Text style={styles.conditionText} category="c2">
                   conditions general d'utilisation{' '}
                 </Text>
               </TouchableOpacity>
@@ -219,7 +223,7 @@ const Step1 = (props: any) => {
 
       <View>
         {error && (
-          <Text style={globalStyle.textError} category="c3">
+          <Text style={globalStyle.textError} category="label">
             Erreur du serveur
           </Text>
         )}
