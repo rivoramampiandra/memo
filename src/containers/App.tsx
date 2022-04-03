@@ -8,6 +8,13 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {Provider} from 'react-redux';
 import {store} from '../store';
 import AppRoute from '../navigation/AppRoute';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {LogBox} from 'react-native';
+
+//FIXME: remove after update react-native-gesture handler
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
+]);
 
 const App = () => {
   useEffect(() => {
