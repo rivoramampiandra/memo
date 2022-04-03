@@ -146,7 +146,7 @@ const History = () => {
                 style={{
                   textAlign: 'center',
                   fontSize: 14,
-                  fontFamily: 'Montserat',
+                  fontFamily: 'Montserrat-Medium',
                 }}>
                 Selon nos prédictions: il vous reste <Text>30 000 km</Text>{' '}
                 avant de changer vos freins
@@ -156,7 +156,7 @@ const History = () => {
                 style={{
                   textAlign: 'center',
                   fontSize: 14,
-                  fontFamily: 'Montserat',
+                  fontFamily: 'Montserrat-Medium',
                 }}>
                 <Text status={'danger'}>Attention </Text>
                 <Text>: vous auriez du remplacer depuis </Text>
